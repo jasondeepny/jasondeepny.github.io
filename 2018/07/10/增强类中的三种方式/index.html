@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>增强类中的三种方式(一) | Jasondeepny Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="继承: 控制这个类的构造方法(new 一个对象出来) 重新要增强的父类的方法 使用的是子类装饰者模式: 装饰者类和被装饰者类要实现相同的接口  而且装饰者类要有被装饰者类对象引用 使用的装饰者类动态代理: 被代理的对象要实现接口 使用的是代理对象 动态代理技术就是用来产生一个对象的代理对象的代理对象存在的价值主要用于拦截对真实业务对象的访问代理对象应该具有和目标对象(真实业务对象)相同的方法现在要">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="增强类中的三种方式(一)">
+<meta property="og:url" content="http://yoursite.com/2018/07/10/增强类中的三种方式/index.html">
+<meta property="og:site_name" content="Jasondeepny Blog">
+<meta property="og:description" content="继承: 控制这个类的构造方法(new 一个对象出来) 重新要增强的父类的方法 使用的是子类装饰者模式: 装饰者类和被装饰者类要实现相同的接口  而且装饰者类要有被装饰者类对象引用 使用的装饰者类动态代理: 被代理的对象要实现接口 使用的是代理对象 动态代理技术就是用来产生一个对象的代理对象的代理对象存在的价值主要用于拦截对真实业务对象的访问代理对象应该具有和目标对象(真实业务对象)相同的方法现在要">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-10T15:42:00.614Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="增强类中的三种方式(一)">
+<meta name="twitter:description" content="继承: 控制这个类的构造方法(new 一个对象出来) 重新要增强的父类的方法 使用的是子类装饰者模式: 装饰者类和被装饰者类要实现相同的接口  而且装饰者类要有被装饰者类对象引用 使用的装饰者类动态代理: 被代理的对象要实现接口 使用的是代理对象 动态代理技术就是用来产生一个对象的代理对象的代理对象存在的价值主要用于拦截对真实业务对象的访问代理对象应该具有和目标对象(真实业务对象)相同的方法现在要">
+  
+    <link rel="alternate" href="/atom.xml" title="Jasondeepny Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Jasondeepny Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Try to make life better!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-增强类中的三种方式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/10/增强类中的三种方式/" class="article-date">
+  <time datetime="2018-07-10T15:40:28.000Z" itemprop="datePublished">2018-07-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      增强类中的三种方式(一)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>继承: 控制这个类的构造方法(new 一个对象出来) 重新要增强的父类的方法 使用的是子类<br>装饰者模式: 装饰者类和被装饰者类要实现相同的接口  而且装饰者类要有被装饰者类对象引用 使用的装饰者类<br>动态代理: 被代理的对象要实现接口 使用的是代理对象</p>
+<p>动态代理技术就是用来产生一个对象的代理对象的<br>代理对象存在的价值主要用于拦截对真实业务对象的访问<br>代理对象应该具有和目标对象(真实业务对象)相同的方法<br>现在要生成某一个对象的代理对象，这个代理对象通常也要编写一个类来生成,通过<code>Proxy</code>类提供的一个<code>newProxyInstance</code>方法用来创建一个对象的代理对象<br><code>static Object newProxyInstance(ClassLoader loader, Class&lt;?&gt;[] interfaces, InvocationHandler h)</code><br><code>newProxyInstance</code>方法用来返回一个代理对象，这个方法总共有3个参数<br><code>ClassLoader loader</code> 用来指明生成代理对象使用哪个类装载器<br><code>Class&lt;?&gt;[] interfaces</code> 用来指明生成哪个对象的代理对象，通过接口指定<br><code>InvocationHandler h</code> 用来指明产生的这个代理对象要做什么事情<br>所以我们只需要调用<code>newProxyInstance</code>方法就可以得到某一个对象的代理对象了<br>在java中规定，要想产生一个对象的代理对象，那么==这个对象必须要有一个接口==,所以只有实现了接口的类才可以创建他的代理对象<br>Proxy类负责创建代理对象时，如果指定了handler（处理器），那么不管用户调用代理对象的什么方法，该方法都是调用处理器的invoke方法<br>由于invoke方法被调用需要三个参数：代理对象、方法、方法的参数，因此不管代理对象哪个方法调用处理器的invoke方法，都必须把自己所在的对象、自己（调用invoke方法的方法）、方法的参数传递进来。<br>因此在动态代理技术里，由于不管用户调用代理对象的什么方法，都是调用开发人员编写的处理器的invoke方法（这相当于invoke方法拦截到了代理对象的方法调用）</p>
+<p>动态代理和装饰者模式<br>相同点 : 都能增强一个类的方法<br>不同的 : 如果是装饰者我们得自己写一个装饰者类  实现被装饰者的接口<br>        如果是动态代理  我们直接使用Proxy对象  代理对象<br>其实动态代理解决了装饰者模式的最大缺点就是你不用把接口中所有的方法都重新调用一遍<br>不管是装饰者还是动态代理都会有一个新的类产生  装饰者类  Proxy对象  是在原来的被增强的类基础上进行增强</p>
+<p>JDK中动态代理: Proxy对象<br>注意：JDK动态代理 (实现接口)<br><code>Proxy.newProxyInstance(ClassLoader cl,Class[] interfaces,InvocationHandler ih);</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProxyDemo1</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">demo1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Waiter waiter = <span class="keyword">new</span> Waitress();</span><br><span class="line">        <span class="comment">// waiter.server();</span></span><br><span class="line">        <span class="comment">// 使用动态代理:Proxy.newProxyInstance();</span></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">            * ClassLoader :类加载器.</span></span><br><span class="line"><span class="comment">            * Class[]     :被增强的对象实现的所有接口</span></span><br><span class="line"><span class="comment">            * InvocationHandler	:处理类.</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">        <span class="comment">// 第一个参数:</span></span><br><span class="line">        ClassLoader classLoader = waiter.getClass().getClassLoader();</span><br><span class="line">        <span class="comment">// 第二个参数:</span></span><br><span class="line">        Class[] interfaces = waiter.getClass().getInterfaces();</span><br><span class="line">        <span class="comment">// 第三次参数:</span></span><br><span class="line">        Waiter waiter2 = (Waiter)Proxy.newProxyInstance(classLoader, interfaces, <span class="keyword">new</span> MyInvocationHandler(waiter));</span><br><span class="line">        waiter2.server();</span><br><span class="line">        <span class="comment">// 说明现在调用代理对象的任何方法的时候,InvocationHandler中的invoke都会执行.</span></span><br><span class="line">        String s = waiter2.sayHello(<span class="string">"张凤"</span>);</span><br><span class="line">        System.out.println(s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyInvocationHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Waiter waiter;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyInvocationHandler</span><span class="params">(Waiter waiter)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.waiter = waiter;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">        * 方法的参数:</span></span><br><span class="line"><span class="comment">        * * proxy:产生的代理对象.</span></span><br><span class="line"><span class="comment">        * * method:当前正在调用的目标类的方法.</span></span><br><span class="line"><span class="comment">        * * params:正在执行的方法中的参数.</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span>    <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] params)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">// System.out.println("InvocationHandler invoke 执行了...");</span></span><br><span class="line">        <span class="comment">// System.out.println("微笑=========");</span></span><br><span class="line">        <span class="comment">// waiter.sayHello("张凤");</span></span><br><span class="line">        <span class="comment">// System.out.println(method.getName());</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="string">"server"</span>.equals(method.getName()))&#123;</span><br><span class="line">            System.out.println(<span class="string">"微笑=========="</span>);</span><br><span class="line">            System.out.println(<span class="string">"白白=========="</span>);</span><br><span class="line">            Object obj = method.invoke(waiter, params);</span><br><span class="line">            <span class="keyword">return</span> obj;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> method.invoke(waiter, params);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 02-案例三：使用动态代理完成通用字符集编码过滤器：动态代理动态增强一个类中的方法</span><br><span class="line"></span><br><span class="line">实现InvocationHandler接口</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">    通过反射调用目标方法</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="03-案例三：使用动态代理完成通用字符集编码过滤器：代码实现"><a href="#03-案例三：使用动态代理完成通用字符集编码过滤器：代码实现" class="headerlink" title="03-案例三：使用动态代理完成通用字符集编码过滤器：代码实现"></a>03-案例三：使用动态代理完成通用字符集编码过滤器：代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest request, ServletResponse response, FilterChain chain)</span></span></span><br><span class="line"><span class="function">        <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> HttpServletRequest req = (HttpServletRequest) request;</span><br><span class="line">    <span class="comment">// 增强req:</span></span><br><span class="line">    HttpServletRequest myReq = (HttpServletRequest) Proxy.newProxyInstance(req.getClass().getClassLoader(),</span><br><span class="line">            req.getClass().getInterfaces(), <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                    <span class="comment">// 判断执行的方法是否是getParameter:</span></span><br><span class="line">                    <span class="keyword">if</span>(<span class="string">"getParameter"</span>.equals(method.getName()))&#123;</span><br><span class="line">                        <span class="comment">// 调用的是getParameter:需要增强这个方法.</span></span><br><span class="line">                        <span class="comment">// 判断请求方式是GET还是POST:</span></span><br><span class="line">                        String type = req.getMethod();</span><br><span class="line">                        <span class="keyword">if</span>(<span class="string">"get"</span>.equalsIgnoreCase(type))&#123;</span><br><span class="line">                            String value = (String) method.invoke(req, args);</span><br><span class="line">                            value = <span class="keyword">new</span> String(value.getBytes(<span class="string">"ISO-8859-1"</span>),<span class="string">"UTF-8"</span>);</span><br><span class="line">                            <span class="keyword">return</span> value;</span><br><span class="line">                        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="string">"post"</span>.equalsIgnoreCase(type))&#123;</span><br><span class="line">                            req.setCharacterEncoding(<span class="string">"UTF-8"</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">return</span> method.invoke(req, args);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">    chain.doFilter(myReq, response);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 1.2.2. -案例三：使用动态代理完成通用字符集编码过滤器：总结：动态代理应用</span><br><span class="line"></span><br><span class="line">AOP的底层使用的就是代理机制</span><br><span class="line"></span><br><span class="line">AOP概念介绍</span><br><span class="line">所谓AOP，即Aspect orientied program,就是面向切面的编程。</span><br><span class="line">面向切面编程Aspect-Orlented-Programming，即AOP是对面向对象的思维方式的有力补充。</span><br><span class="line">AOP的好处是可以动态地添加和删除在切面上的逻辑而不影响原来的执行代码</span><br><span class="line"></span><br><span class="line">什么是切面</span><br><span class="line">所谓切面，指的是贯穿到系统的各个模块中的系统一个功能就是一个方面(切面)，比如，记录日志，统一异常处理，事务处理，权限检查，这些功能都是软件系统的一个面，而不是一点，在各个模块中都要出现。</span><br><span class="line">将日志记录，统一异常处理，事务处理，权限检查等代码从业务逻辑代码中划分出来，通过对这些行为的分离，我们希望可以将它们独立到非指导业务逻辑的方法中，进而改变这些行为的时候不影响业务逻辑的代码。</span><br><span class="line"></span><br><span class="line">什么是面向切面编程</span><br><span class="line">把系统的一个方面的功能封装成对象的形式来处理就是面向切面编程</span><br><span class="line"></span><br><span class="line">怎么进行切面编程</span><br><span class="line">把功能模块对应的对象作为切面嵌入到原来的各个系统模块中，采用代理技术，代理会调用目标，同时把切面功能的代码（对象）加入进来。</span><br><span class="line"></span><br><span class="line">### 1.2.3. -案例三：使用动态代理完成通用字符集编码过滤器：总结：类加载器</span><br><span class="line"></span><br><span class="line">类的加载器的作用</span><br><span class="line">类加载器是负责将可能是网络上、也可能是磁盘上的<span class="class"><span class="keyword">class</span>文件加载到内存中。并为其生成对应的<span class="title">java</span>.<span class="title">lang</span>.<span class="title">class</span>对象。一旦一个类被载入<span class="title">JVM</span>了，同一个类就不会被再次加载。</span></span><br><span class="line"><span class="class">当<span class="title">JVM</span>启动时，会形成由三个类加载器组成的初始类加载器层次结构</span></span><br><span class="line">Java中将类加载器分成三类:</span><br><span class="line">![](http:<span class="comment">//os4z8t7lb.bkt.clouddn.com/201803140815_789.png)</span></span><br><span class="line"></span><br><span class="line">引导类加载器:　JAVA_HOME/jre/lib/rt.jar</span><br><span class="line">     |</span><br><span class="line">扩展类加载器:　JAVA_HOME/jre/lib/ext<span class="comment">/*.jar</span></span><br><span class="line"><span class="comment">     |</span></span><br><span class="line"><span class="comment">应用类加载器:　加载类路径下的所有的class.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">这些类加载器如何保证类只会加载一次而且不会重复加载:</span></span><br><span class="line"><span class="comment">类加载器的全盘委托机制:</span></span><br><span class="line"><span class="comment">class A &#123;</span></span><br><span class="line"><span class="comment">　　String s;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">由应用类加载器得到`A.class` `String,class`,委托给扩展类加载器,扩展类加载器又委托给引导类加载器.引导类加载器加载`String.class`.将其他的类的class向下给扩展类加载器.扩展类加载器没有找到.向下给应用类加载器,将`A.class` 加载.</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">jvm里有多个类加载器，每个类加载器可以负责加载特定位置的类，除了bootstrap之外，其他的类加载器本身也都是java类，它们的父类是ClassLoader。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">### 1.2.4. -网上商城综合案例：需求介绍</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">案例功能介绍</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">第一种情况就是新项目</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">1. 产品经理联系需求,确定需求</span></span><br><span class="line"><span class="comment">2. 产品组织各部门开会(立项)</span></span><br><span class="line"><span class="comment">3. 后台部门自己组织开会(讨论需求,确定接口,接口数量,接口名称,接口参数,接口返回值...),初步的接口文档</span></span><br><span class="line"><span class="comment">4. 由后台组织其他部门(前端,Android,iOS)开会, 确定接口文档, 后台老大发邮件给各个平台老大及人员</span></span><br><span class="line"><span class="comment">5. 分工给各个人员(自己开发接口)</span></span><br><span class="line"><span class="comment">6. 评估工期(需求和技术分析) 如果所有需求都可以实现 那你就把工期+3~5天发给老大 如果有的需求不会(完全没有听过)先去百度看有没有现成的解决方案 如果有的话你大概去看一下实现 如果要集成实现要多久 如果百度上都没有 直接去找你们老大咨询实现技术</span></span><br><span class="line"><span class="comment">7. 做开发(写代码)</span></span><br><span class="line"><span class="comment">8. 提交测试(一个项目四个月 留给咱们开发的时间应该不到两个月 联调(跟前端, Android, iOS)联合调试 给测试至少半个月时间  改Bug  测试  改Bug...)</span></span><br><span class="line"><span class="comment">9. 禅道</span></span><br><span class="line"><span class="comment">10. 上线</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">第二种情况是老项目</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">1. 先去找你们老大开Git/SVN账号(代码仓库)</span></span><br><span class="line"><span class="comment">2. 克隆代码</span></span><br><span class="line"><span class="comment">3. 你去找你们老大要文档(各种文档)</span></span><br><span class="line"><span class="comment">4. 看完需求文档运行项目(各个功能测试一下)点击注册:http://localhost:8080/xxxServlet?xxx=yyy</span></span><br><span class="line"><span class="comment">5. 看数据库设计文档(搞清楚表与表之间的关系,每个表有几个字段,分别什么意思)</span></span><br><span class="line"><span class="comment">6. 看代码(针对性) 先去看整个项目使用的是什么框架 都使用了哪些工具类...json 项目的包结构</span></span><br><span class="line"><span class="comment">7. 写代码</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">### 1.2.5. -网上商城综合案例：表关系分析与设计</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">ER模型图</span></span><br><span class="line"><span class="comment">![](http://os4z8t7lb.bkt.clouddn.com/201712070948_375.png)</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">### 1.2.6. -网上商城综合案例：BaseServlet分析</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">使用反射技术编写通用Servlet</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">```java</span></span><br><span class="line"><span class="comment">public class BaseServlet extends HttpServlet&#123;</span></span><br><span class="line"><span class="comment">     public void service(HttpServletRequest req,HttpServletResponse resp)&#123;</span></span><br><span class="line"><span class="comment">          // http://localhost:8080/store_2.0/UserServlet?method=regist</span></span><br><span class="line"><span class="comment">          // http://localhost:8080/store_2.0/ProductServlet?method=findAll</span></span><br><span class="line"><span class="comment">          String methodName = request.getParameter(“method”);</span></span><br><span class="line"><span class="comment">          // 获得Class:</span></span><br><span class="line"><span class="comment">          Class clazz = this.getClass(); </span></span><br><span class="line"><span class="comment">          Method method = clazz.getMethod(methodName,HttpServletRequest.class,HttpSerlvetResponse.class);</span></span><br><span class="line"><span class="comment">          String path = (String)method.invoke(this,req,resp);</span></span><br><span class="line"><span class="comment">          if(path != null)&#123;</span></span><br><span class="line"><span class="comment">              req.getRequestDispatcher(path).forward(req,resp);</span></span><br><span class="line"><span class="comment">          &#125;</span></span><br><span class="line"><span class="comment">     &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/10/增强类中的三种方式/" data-id="cjjfv6fqz00013kr7uigqe3hj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/10/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/java/" style="font-size: 10px;">java</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/07/10/增强类中的三种方式/">增强类中的三种方式(一)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/07/10/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Jason<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
