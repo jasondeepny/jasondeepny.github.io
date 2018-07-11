@@ -6,20 +6,23 @@
   <title>redis-常见问题及其解决方案 | Jasondeepny Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
+  <meta name="keywords" content="java" />
   
   
   
-  <meta name="description" content="Share technology and record life!">
+  
+  <meta name="description" content="redis 客户端 不能存储问题 (error) MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance i">
+<meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis-常见问题及其解决方案">
 <meta property="og:url" content="http://yoursite.com/2018/07/11/redis-常见问题及其解决方案/index.html">
 <meta property="og:site_name" content="Jasondeepny Blog">
-<meta property="og:description" content="Share technology and record life!">
+<meta property="og:description" content="redis 客户端 不能存储问题 (error) MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance i">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-11T00:38:06.205Z">
+<meta property="og:updated_time" content="2018-07-11T01:06:48.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis-常见问题及其解决方案">
-<meta name="twitter:description" content="Share technology and record life!">
+<meta name="twitter:description" content="redis 客户端 不能存储问题 (error) MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance i">
   
     <link rel="alternate" href="/atom.xml" title="Jasondeepny Blog" type="application/atom+xml">
   
@@ -190,7 +193,45 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h4 id="redis-客户端-不能存储问题"><a href="#redis-客户端-不能存储问题" class="headerlink" title="redis 客户端 不能存储问题"></a>redis 客户端 不能存储问题</h4><blockquote>
+<p>(error) MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance is configured to report errors during writes if RDB snapshotting fails (stop-writes-on-bgsave-error option). Please check the Redis logs for details about the RDB error.</p>
+</blockquote>
+<p>– 原因：</p>
+<p>强制关闭Redis快照导致不能持久化。</p>
+<p>解决方案：</p>
+<p>运行<code>config set stop-writes-on-bgsave-error no</code>命令后，关闭配置项<code>stop-writes-on-bgsave-error</code>解决该问题。</p>
+<p><code>root@ubuntu:/usr/local/redis/bin# ./redis-cli
+127.0.0.1:6379&gt; config set stop-writes-on-bgsave-error no
+OK
+127.0.0.1:6379&gt; lpush myColour &quot;red&quot;
+(integer) 1</code></p>
+<h4 id="关于java端连不上redis-pool的问题（-逐一排除-）"><a href="#关于java端连不上redis-pool的问题（-逐一排除-）" class="headerlink" title="关于java端连不上redis pool的问题（ 逐一排除 ）"></a>关于java端连不上redis pool的问题（ 逐一排除 ）</h4><ol>
+<li>确认java程序无误</li>
+<li><p>可能是redis配置文件中端口的限制</p>
+<blockquote>
+<p>进入redis.conf文件 默认配置是本地IP 所以直接将里面的bind 127.0.0.1注释掉</p>
+</blockquote>
+</li>
+<li><p>防火墙问题</p>
+<ol>
+<li>首先是虚拟机防火墙问题命令窗口将redis 6379 端口放开<br> 命令：`/sbin/iptables -I INPUT -p tcp –dport 6379 -j ACCEPT<pre><code>/etc/rc.d/init.d/iptables save`
+</code></pre></li>
+<li>如果仍然不能连接，则断开防火墙（有风险）<ol>
+<li>永久性生效，重启后不会复原<br>开启： <code>chkconfig iptables on</code><br>关闭： <code>chkconfig iptables off</code><br>2.即时生效，重启后复原<br>开启： <code>service iptables start</code><br>关闭： <code>service iptables stop</code> </li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>考虑redis版本或是java 程序的两个jar包 的不兼容的问题，更换匹配的jar包</p>
+</li>
+<li>注意：在更换redis版本前<ol>
+<li>首先要关闭客户端，执行命令<code>./redis-cli shutdown</code>或者干掉线程，命令<code>ps -ef|grep redis</code>进行查看线程，执行命令<code>kill -9 线程号</code></li>
+<li>其次要清空虚拟机中的所有redis文件再重新安装</li>
+</ol>
+</li>
+</ol>
+<p>经过这几个步骤基本可以解决问题啦~~~</p>
+
       
     </div>
     <footer class="article-footer">
@@ -259,7 +300,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav">None</ol>
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#redis-客户端-不能存储问题"><span class="nav-number">1.</span> <span class="nav-text">redis 客户端 不能存储问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于java端连不上redis-pool的问题（-逐一排除-）"><span class="nav-number">2.</span> <span class="nav-text">关于java端连不上redis pool的问题（ 逐一排除 ）</span></a></li></ol>
     
     </div>
   </aside>
