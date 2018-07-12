@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>浅析actioncontext与servletactioncontext的区别 | Jasondeepny Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="java" />
+  
+  
+  
+  
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;在学习Struts的过程中,很多人对于ActionContext与ServletActionContext两个对象之间的关系不是很清楚,这两个对象尤其是ActionContext对于Struts的学习至关重要,所以接下来我对二者来做一个较为详细的分析. ActionContext&amp;ensp;&amp;ensp;&amp;ensp;我们知道，ActionContext是Actio">
+<meta name="keywords" content="java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅析ActionContext与ServletActionContext的区别">
+<meta property="og:url" content="http://yoursite.com/2018/07/12/浅析ActionContext与ServletActionContext的区别/index.html">
+<meta property="og:site_name" content="Jasondeepny Blog">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;在学习Struts的过程中,很多人对于ActionContext与ServletActionContext两个对象之间的关系不是很清楚,这两个对象尤其是ActionContext对于Struts的学习至关重要,所以接下来我对二者来做一个较为详细的分析. ActionContext&amp;ensp;&amp;ensp;&amp;ensp;我们知道，ActionContext是Actio">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-12T05:35:40.646Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅析ActionContext与ServletActionContext的区别">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;在学习Struts的过程中,很多人对于ActionContext与ServletActionContext两个对象之间的关系不是很清楚,这两个对象尤其是ActionContext对于Struts的学习至关重要,所以接下来我对二者来做一个较为详细的分析. ActionContext&amp;ensp;&amp;ensp;&amp;ensp;我们知道，ActionContext是Actio">
+  
+    <link rel="alternate" href="/atom.xml" title="Jasondeepny Blog" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-浅析ActionContext与ServletActionContext的区别" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      浅析ActionContext与ServletActionContext的区别
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/07/12/浅析ActionContext与ServletActionContext的区别/" class="article-date">
+	  <time datetime="2018-07-12T05:34:20.000Z" itemprop="datePublished">2018-07-12</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>&nbsp;&nbsp;&nbsp;在学习Struts的过程中,很多人对于ActionContext与ServletActionContext两个对象之间的关系不是很清楚,这两个对象尤其是ActionContext对于Struts的学习至关重要,所以接下来我对二者来做一个较为详细的分析.</p>
+<h3 id="ActionContext"><a href="#ActionContext" class="headerlink" title="ActionContext"></a>ActionContext</h3><p>&ensp;&ensp;&ensp;我们知道，ActionContext是Action执行时的上下文，里面存放着Action在执行时需要用到的对象，也称之为广义值栈。Struts2在每次执行Action之前都会创建新的ActionContext，在同一个线程里ActionContext里面的属性是唯一的，这样Action就可以在多线程中使用。</p>
+<h4 id="1-1-ActionContext的线程安全性"><a href="#1-1-ActionContext的线程安全性" class="headerlink" title="1.1 ActionContext的线程安全性"></a>1.1 ActionContext的线程安全性</h4><p>&emsp;&emsp;那么Struts2是如何保证ActionContext的线程安全性呢？看看ActionContext对象的代码，示例如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ActionContext</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;  </span><br><span class="line">　　<span class="keyword">static</span> ThreadLocal actionContext = <span class="keyword">new</span> ThreadLocal();  </span><br><span class="line">　　……  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="1-2-访问的是Map"><a href="#1-2-访问的是Map" class="headerlink" title="1.2 访问的是Map"></a>1.2 访问的是Map</h4><p>&emsp;&emsp;回顾前面在使用ActionContext来访问Session中数据的程序，你会发现，其实在程序里面访问的是一个Map，而非HttpSession对象，这是为什么呢？</p>
+<p>&emsp;&emsp;原来，Struts2框架将与Web相关的很多对象重新进行了包装，比如将HttpSession对象重新包装成了一个Map对象，里面存放着Session中的数据，提供这个Map给Action使用，而不用Action直接和底层的HttpSession打交道。也正是因为框架的包装，让Action可以完全的和Web层解耦。但是要注意一点，ActionContext不能在普通的Java应用程序中使用。我们知道Action和Servlet API是解耦的，因此可以在Java应用程序中调用Action的execute方法来进行测试。但是如果使用了ActionContext来获取session数据，那么就不能这样运行了。因为ActionContext包装的都是Web的数据，在Java应用程序中运行的时候，没有Web的环境和响应的数据，因而会抛出空指针的异常。访问其它的Web对象的值也是与此类似的，你通过ActionContext去访问的都是包装后的Map。</p>
+<h4 id="1-3-使用SessionAware接口"><a href="#1-3-使用SessionAware接口" class="headerlink" title="1.3 使用SessionAware接口"></a>1.3 使用SessionAware接口</h4><p>&emsp;&emsp;Struts2还提供另外一种简单的方式，使用SessionAware接口来访问存储于ActionContext中的数据，该接口通过使用IoC/DI来为Action注入Session Map，就可以在程序里面直接使用这个Map来操作数据了。</p>
+<p>&emsp;&emsp;（1）在Action中不再需要访问ActionContext了，取而代之，Action实现SessionAware接口，该接口告知Struts2在Action执行之前要设置Session Map，是通过servletConfig 拦截器来实现的，这个拦截器在defaultStack里面就有。示例代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OgnlAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> <span class="keyword">implements</span> <span class="title">SessionAware</span></span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, Object&gt; session;  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSession</span><span class="params">(Map&lt;String, Object&gt; session)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.session = session;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span></span>&#123;  </span><br><span class="line">        session.put(<span class="string">"sessionTestKey"</span>, <span class="string">"测试SessionAware"</span>);  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.SUCCESS;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中：</p>
+<ul>
+<li>Action类实现SessionAware接口</li>
+<li>这个接口要求Action类实现一个方法setSession(Map&lt;String, Object&gt; session)，通过这个方法注入Session的数据</li>
+<li>在execute方法中，通过这个私有属性就可以操作会话中的数据，注意一点，这个Map中的值也是与HttpSession联动的。</li>
+</ul>
+<p>&emsp;&emsp;（2）我们可以再前台获取session中的属性，以便看出Action操作session后的效果，示例如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ taglib prefix=<span class="string">"s"</span> uri=<span class="string">"/struts-tags"</span>%&gt;  </span><br><span class="line">会话中的值：&lt;s:property value=<span class="string">"#session['sessionTestKey']"</span>/&gt;  </span><br><span class="line">&lt;br&gt;  </span><br><span class="line">通过Servlet的Api获取会话中的值：&lt;%=session.getAttribute(<span class="string">"sessionTestKey"</span>) %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;为了能够在普通的Java应用中运行并测试Action，推荐大家使用SessionAware的方式来访问HttpSession。因为这样一来，在通过main方法运行或测试的时候，可以直接调用setSession方法，传入模拟的会话数据，就不会出现execute方法中抛出空指针的异常了。因此，推荐大家使用SessionAware的方式来访问HttpSession。</p>
+<h4 id="1-4-使用其它包装接口"><a href="#1-4-使用其它包装接口" class="headerlink" title="1.4 使用其它包装接口"></a>1.4 使用其它包装接口</h4><p>&emsp;&emsp;跟SessionAware类似，你可以使用RequestAware来获取包装请求对象的attribute中的值的Map；使用ApplicationAware来获取包装ServletContext对象的attribute中的值的Map；使用ParameterAware来获取包装请求对象的参数中的值的Map，等等，这里只罗列这几个常见和常用的，还有更多的请参见Struts2的API文档。</p>
+<h3 id="ServletActionContext"><a href="#ServletActionContext" class="headerlink" title="ServletActionContext"></a>ServletActionContext</h3><p>&emsp;&emsp;在实际应用开发中，光是获取数据就够了吗？答案显然是否定的，有些时候，根据功能需要，在Action中必须要能获取到Servlet相关的API，比如要操作Cookie。这个时候，就需要用ServletActionContext了。</p>
+<h4 id="2-1-ServletActionContext概述"><a href="#2-1-ServletActionContext概述" class="headerlink" title="2.1 ServletActionContext概述"></a>2.1 ServletActionContext概述</h4><p>&emsp;&emsp;这个类直接继承了ActionContext，当然也继承了它父类的很多功能，比如：对OgnlValueStack、Action名字等的访问。更重要的是，它还提供了直接访问Servlet的相关对象的功能，它可以取得的对象有：</p>
+<p>-HttpServletRequest：请求对象<br>-HttpServletResponse：响应对象<br>-ServletContext：Servlet上下文信息<br>-PageContext：Http页面上下文</p>
+<h4 id="2-2-基本使用"><a href="#2-2-基本使用" class="headerlink" title="2.2 基本使用"></a>2.2 基本使用</h4><p>&emsp;&emsp;这里要注意的是HttpSession对象的获取，是在取得HttpRequest对象过后，通过HttpRequest对象来获取会话对象。当然，取得相应的对象后，就直接使用这些对象的方法来进行开发，这里就不去赘述了。</p>
+<h4 id="2-3-通过IoC-DI的方式来获取相应的Servlet对象"><a href="#2-3-通过IoC-DI的方式来获取相应的Servlet对象" class="headerlink" title="2.3 通过IoC/DI的方式来获取相应的Servlet对象"></a>2.3 通过IoC/DI的方式来获取相应的Servlet对象</h4><p>&emsp;&emsp;还可以通过IoC/DI的方式来获取相应的Servlet对象，对应关系是：</p>
+<ul>
+<li>ServletRequestAware：通过这个接口来获取HttpServletRequest对象</li>
+<li>ServletResponseAware：通过这个接口来获取HttpServletResponse对象<br>&emsp;&emsp;用ServletRequestAware来示例一下。</li>
+</ul>
+<p>&emsp;&emsp;（1）修改Action，让其实现ServletRequestAware接口，示例代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OgnlAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> <span class="keyword">implements</span> <span class="title">ServletRequestAware</span></span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> HttpServletRequest request = <span class="keyword">null</span>;    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setServletRequest</span><span class="params">(HttpServletRequest request)</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">this</span>.request = request;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span></span>&#123;          </span><br><span class="line">        request.setAttribute(<span class="string">"request"</span>, <span class="string">"Request的属性值"</span>);  </span><br><span class="line">        request.getSession().setAttribute(<span class="string">"sessionTestKey"</span>, <span class="string">"测试SessionAware"</span>);  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.SUCCESS;  </span><br><span class="line">    &#125;     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;（2）对应的结果页面也需要稍作修改，要把Action中设置的值显示出来，示例如下：</p>
+<blockquote>
+<p>&lt;%@ taglib prefix=”s” uri=”/struts-tags”%&gt;<br>Request的属性值：&lt;s:property value=”#request[‘request’]”/&gt;<br><br><br>会话的属性值：&lt;s:property value=”#session[‘sessionTestKey’]”/&gt;  </p>
+</blockquote>
+<h3 id="3-ActionContext和ServletActionContext"><a href="#3-ActionContext和ServletActionContext" class="headerlink" title="3 ActionContext和ServletActionContext"></a>3 ActionContext和ServletActionContext</h3><p>&emsp;&emsp;根据前面的讲述，你会发现，ActionContext和ServletActionContext有着一些重复的功能，都能够获取到Web对象的数据，但是又有些不同。通常情况下，可以这么认为：ActionContext主要负责值的操作；ServletActionContext主要负责获取Servlet对象。那么在Action中，该如何去抉择呢？建议的原则是：<br>-优先使用ActionContext<br>-只有ActionContext不能满足功能要求的时候，才使用ServletActionContext</p>
+<p>&emsp;&emsp;总之，要尽量让Action与Web无关，这对于Action的测试和复用都是极其有好处的。另外还有一点需要注意：在使用ActionContext时，不要在Action的构造函数里使用ActionContext.getContext()，因为这个时候ActionContext里的一些值也许还没有设置，这时通过ActionContext取得的值也许是null。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/WeChanQR.png',
+  alipayImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/AliPayQR.jpg'
+});
+</script>
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/11/redis-常见问题及其解决方案/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">redis-常见问题及其解决方案</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ActionContext"><span class="nav-number">1.</span> <span class="nav-text">ActionContext</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-ActionContext的线程安全性"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 ActionContext的线程安全性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-访问的是Map"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 访问的是Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-使用SessionAware接口"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 使用SessionAware接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-使用其它包装接口"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 使用其它包装接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ServletActionContext"><span class="nav-number">2.</span> <span class="nav-text">ServletActionContext</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-ServletActionContext概述"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 ServletActionContext概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-基本使用"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-通过IoC-DI的方式来获取相应的Servlet对象"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 通过IoC/DI的方式来获取相应的Servlet对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-ActionContext和ServletActionContext"><span class="nav-number">3.</span> <span class="nav-text">3 ActionContext和ServletActionContext</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="https://github.com/jasondeepny" target="_blank">jasondeepny</a></p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2018 Jasondeepny Blog All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Jasondeepny Blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 Jason All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
