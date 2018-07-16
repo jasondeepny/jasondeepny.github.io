@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="Jasondeepny Blog">
 <meta property="og:description" content="redis 客户端 不能存储问题 (error) MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance i">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-11T01:06:48.998Z">
+<meta property="og:updated_time" content="2018-07-16T10:38:13.512Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis-常见问题及其解决方案">
 <meta name="twitter:description" content="redis 客户端 不能存储问题 (error) MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance i">
@@ -196,6 +196,7 @@
         <h4 id="redis-客户端-不能存储问题"><a href="#redis-客户端-不能存储问题" class="headerlink" title="redis 客户端 不能存储问题"></a>redis 客户端 不能存储问题</h4><blockquote>
 <p>(error) MISCONF Redis is configured to save RDB snapshots, but it is currently not able to persist on disk. Commands that may modify the data set are disabled, because this instance is configured to report errors during writes if RDB snapshotting fails (stop-writes-on-bgsave-error option). Please check the Redis logs for details about the RDB error.</p>
 </blockquote>
+<a id="more"></a>
 <p>– 原因：</p>
 <p>强制关闭Redis快照导致不能持久化。</p>
 <p>解决方案：</p>

@@ -11,18 +11,18 @@
   
   
   
-  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;在学习Struts的过程中,很多人对于ActionContext与ServletActionContext两个对象之间的关系不是很清楚,这两个对象尤其是ActionContext对于Struts的学习至关重要,所以接下来我对二者来做一个较为详细的分析. ActionContext&amp;ensp;&amp;ensp;&amp;ensp;我们知道，ActionContext是Actio">
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;在学习Struts的过程中,很多人对于ActionContext与ServletActionContext两个对象之间的关系不是很清楚,这两个对象尤其是ActionContext对于Struts的学习至关重要,所以接下来我对二者来做一个较为详细的分析.">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浅析ActionContext与ServletActionContext的区别">
 <meta property="og:url" content="http://yoursite.com/2018/07/12/浅析ActionContext与ServletActionContext的区别/index.html">
 <meta property="og:site_name" content="Jasondeepny Blog">
-<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;在学习Struts的过程中,很多人对于ActionContext与ServletActionContext两个对象之间的关系不是很清楚,这两个对象尤其是ActionContext对于Struts的学习至关重要,所以接下来我对二者来做一个较为详细的分析. ActionContext&amp;ensp;&amp;ensp;&amp;ensp;我们知道，ActionContext是Actio">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;在学习Struts的过程中,很多人对于ActionContext与ServletActionContext两个对象之间的关系不是很清楚,这两个对象尤其是ActionContext对于Struts的学习至关重要,所以接下来我对二者来做一个较为详细的分析.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-12T05:35:40.646Z">
+<meta property="og:updated_time" content="2018-07-16T10:36:23.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅析ActionContext与ServletActionContext的区别">
-<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;在学习Struts的过程中,很多人对于ActionContext与ServletActionContext两个对象之间的关系不是很清楚,这两个对象尤其是ActionContext对于Struts的学习至关重要,所以接下来我对二者来做一个较为详细的分析. ActionContext&amp;ensp;&amp;ensp;&amp;ensp;我们知道，ActionContext是Actio">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;在学习Struts的过程中,很多人对于ActionContext与ServletActionContext两个对象之间的关系不是很清楚,这两个对象尤其是ActionContext对于Struts的学习至关重要,所以接下来我对二者来做一个较为详细的分析.">
   
     <link rel="alternate" href="/atom.xml" title="Jasondeepny Blog" type="application/atom+xml">
   
@@ -194,6 +194,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>&nbsp;&nbsp;&nbsp;在学习Struts的过程中,很多人对于ActionContext与ServletActionContext两个对象之间的关系不是很清楚,这两个对象尤其是ActionContext对于Struts的学习至关重要,所以接下来我对二者来做一个较为详细的分析.</p>
+<a id="more"></a>
 <h3 id="ActionContext"><a href="#ActionContext" class="headerlink" title="ActionContext"></a>ActionContext</h3><p>&ensp;&ensp;&ensp;我们知道，ActionContext是Action执行时的上下文，里面存放着Action在执行时需要用到的对象，也称之为广义值栈。Struts2在每次执行Action之前都会创建新的ActionContext，在同一个线程里ActionContext里面的属性是唯一的，这样Action就可以在多线程中使用。</p>
 <h4 id="1-1-ActionContext的线程安全性"><a href="#1-1-ActionContext的线程安全性" class="headerlink" title="1.1 ActionContext的线程安全性"></a>1.1 ActionContext的线程安全性</h4><p>&emsp;&emsp;那么Struts2是如何保证ActionContext的线程安全性呢？看看ActionContext对象的代码，示例如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ActionContext</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;  </span><br><span class="line">　　<span class="keyword">static</span> ThreadLocal actionContext = <span class="keyword">new</span> ThreadLocal();  </span><br><span class="line">　　……  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

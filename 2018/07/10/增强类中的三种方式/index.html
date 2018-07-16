@@ -11,18 +11,18 @@
   
   
   
-  <meta name="description" content="继承: 控制这个类的构造方法(new 一个对象出来) 重新要增强的父类的方法 使用的是子类装饰者模式: 装饰者类和被装饰者类要实现相同的接口  而且装饰者类要有被装饰者类对象引用 使用的装饰者类动态代理: 被代理的对象要实现接口 使用的是代理对象 动态代理技术就是用来产生一个对象的代理对象的代理对象存在的价值主要用于拦截对真实业务对象的访问代理对象应该具有和目标对象(真实业务对象)相同的方法现在要">
+  <meta name="description" content="继承: 控制这个类的构造方法(new 一个对象出来) 重新要增强的父类的方法 使用的是子类装饰者模式: 装饰者类和被装饰者类要实现相同的接口  而且装饰者类要有被装饰者类对象引用 使用的装饰者类动态代理: 被代理的对象要实现接口 使用的是代理对象">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="增强类中的三种方式(一)">
 <meta property="og:url" content="http://yoursite.com/2018/07/10/增强类中的三种方式/index.html">
 <meta property="og:site_name" content="Jasondeepny Blog">
-<meta property="og:description" content="继承: 控制这个类的构造方法(new 一个对象出来) 重新要增强的父类的方法 使用的是子类装饰者模式: 装饰者类和被装饰者类要实现相同的接口  而且装饰者类要有被装饰者类对象引用 使用的装饰者类动态代理: 被代理的对象要实现接口 使用的是代理对象 动态代理技术就是用来产生一个对象的代理对象的代理对象存在的价值主要用于拦截对真实业务对象的访问代理对象应该具有和目标对象(真实业务对象)相同的方法现在要">
+<meta property="og:description" content="继承: 控制这个类的构造方法(new 一个对象出来) 重新要增强的父类的方法 使用的是子类装饰者模式: 装饰者类和被装饰者类要实现相同的接口  而且装饰者类要有被装饰者类对象引用 使用的装饰者类动态代理: 被代理的对象要实现接口 使用的是代理对象">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-13T16:12:11.073Z">
+<meta property="og:updated_time" content="2018-07-16T10:36:59.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="增强类中的三种方式(一)">
-<meta name="twitter:description" content="继承: 控制这个类的构造方法(new 一个对象出来) 重新要增强的父类的方法 使用的是子类装饰者模式: 装饰者类和被装饰者类要实现相同的接口  而且装饰者类要有被装饰者类对象引用 使用的装饰者类动态代理: 被代理的对象要实现接口 使用的是代理对象 动态代理技术就是用来产生一个对象的代理对象的代理对象存在的价值主要用于拦截对真实业务对象的访问代理对象应该具有和目标对象(真实业务对象)相同的方法现在要">
+<meta name="twitter:description" content="继承: 控制这个类的构造方法(new 一个对象出来) 重新要增强的父类的方法 使用的是子类装饰者模式: 装饰者类和被装饰者类要实现相同的接口  而且装饰者类要有被装饰者类对象引用 使用的装饰者类动态代理: 被代理的对象要实现接口 使用的是代理对象">
   
     <link rel="alternate" href="/atom.xml" title="Jasondeepny Blog" type="application/atom+xml">
   
@@ -194,6 +194,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>继承: 控制这个类的构造方法(new 一个对象出来) 重新要增强的父类的方法 使用的是子类<br>装饰者模式: 装饰者类和被装饰者类要实现相同的接口  而且装饰者类要有被装饰者类对象引用 使用的装饰者类<br>动态代理: 被代理的对象要实现接口 使用的是代理对象</p>
+<a id="more"></a>
 <p>动态代理技术就是用来产生一个对象的代理对象的<br>代理对象存在的价值主要用于拦截对真实业务对象的访问<br>代理对象应该具有和目标对象(真实业务对象)相同的方法<br>现在要生成某一个对象的代理对象，这个代理对象通常也要编写一个类来生成,通过<code>Proxy</code>类提供的一个<code>newProxyInstance</code>方法用来创建一个对象的代理对象<br><code>static Object newProxyInstance(ClassLoader loader, Class&lt;?&gt;[] interfaces, InvocationHandler h)</code><br><code>newProxyInstance</code>方法用来返回一个代理对象，这个方法总共有3个参数<br><code>ClassLoader loader</code> 用来指明生成代理对象使用哪个类装载器<br><code>Class&lt;?&gt;[] interfaces</code> 用来指明生成哪个对象的代理对象，通过接口指定<br><code>InvocationHandler h</code> 用来指明产生的这个代理对象要做什么事情<br>所以我们只需要调用<code>newProxyInstance</code>方法就可以得到某一个对象的代理对象了<br>在java中规定，要想产生一个对象的代理对象，那么==这个对象必须要有一个接口==,所以只有实现了接口的类才可以创建他的代理对象<br>Proxy类负责创建代理对象时，如果指定了handler（处理器），那么不管用户调用代理对象的什么方法，该方法都是调用处理器的invoke方法<br>由于invoke方法被调用需要三个参数：代理对象、方法、方法的参数，因此不管代理对象哪个方法调用处理器的invoke方法，都必须把自己所在的对象、自己（调用invoke方法的方法）、方法的参数传递进来。<br>因此在动态代理技术里，由于不管用户调用代理对象的什么方法，都是调用开发人员编写的处理器的invoke方法（这相当于invoke方法拦截到了代理对象的方法调用）</p>
 <p>动态代理和装饰者模式<br>相同点 : 都能增强一个类的方法<br>不同的 : 如果是装饰者我们得自己写一个装饰者类  实现被装饰者的接口<br>        如果是动态代理  我们直接使用Proxy对象  代理对象<br>其实动态代理解决了装饰者模式的最大缺点就是你不用把接口中所有的方法都重新调用一遍<br>不管是装饰者还是动态代理都会有一个新的类产生  装饰者类  Proxy对象  是在原来的被增强的类基础上进行增强</p>
 <p>JDK中动态代理: Proxy对象<br>注意：JDK动态代理 (实现接口)<br><code>Proxy.newProxyInstance(ClassLoader cl,Class[] interfaces,InvocationHandler ih);</code></p>
