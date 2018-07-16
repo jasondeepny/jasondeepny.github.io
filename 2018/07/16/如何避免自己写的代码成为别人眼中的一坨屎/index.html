@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>如何避免自己写的代码成为别人眼中的一坨屎! | Jasondeepny Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="职业之路" />
+  
+  
+  
+  
+  <meta name="description" content="Any fool can write code that a computer can understand. Good programmers write code that humans can understand. 普通的工程师堆砌代码，优秀的工程师优雅代码，卓越的工程师简化代码。 640?wx_fmt=jpeg 来源：云栖社区  |  作者：竹涧  |  原文地址见文末 普通的工程师堆">
+<meta name="keywords" content="职业之路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何避免自己写的代码成为别人眼中的一坨屎!">
+<meta property="og:url" content="http://yoursite.com/2018/07/16/如何避免自己写的代码成为别人眼中的一坨屎/index.html">
+<meta property="og:site_name" content="Jasondeepny Blog">
+<meta property="og:description" content="Any fool can write code that a computer can understand. Good programmers write code that humans can understand. 普通的工程师堆砌代码，优秀的工程师优雅代码，卓越的工程师简化代码。 640?wx_fmt=jpeg 来源：云栖社区  |  作者：竹涧  |  原文地址见文末 普通的工程师堆">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-16T10:23:23.470Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何避免自己写的代码成为别人眼中的一坨屎!">
+<meta name="twitter:description" content="Any fool can write code that a computer can understand. Good programmers write code that humans can understand. 普通的工程师堆砌代码，优秀的工程师优雅代码，卓越的工程师简化代码。 640?wx_fmt=jpeg 来源：云栖社区  |  作者：竹涧  |  原文地址见文末 普通的工程师堆">
+  
+    <link rel="alternate" href="/atom.xml" title="Jasondeepny Blog" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-如何避免自己写的代码成为别人眼中的一坨屎" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      如何避免自己写的代码成为别人眼中的一坨屎!
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/07/16/如何避免自己写的代码成为别人眼中的一坨屎/" class="article-date">
+	  <time datetime="2018-07-16T10:17:52.000Z" itemprop="datePublished">2018-07-16</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> Any fool can write code that a computer can understand. Good programmers write code that humans can understand. 普通的工程师堆砌代码，优秀的工程师优雅代码，卓越的工程师简化代码。</p>
+<p>640?wx_fmt=jpeg</p>
+<p>来源：云栖社区  |  作者：竹涧  |  原文地址见文末</p>
+<p>普通的工程师堆砌代码，优秀的工程师优雅代码，卓越的工程师简化代码。如何写出优雅整洁易懂的代码是一门学问，也是软件工程实践里重要的一环。笔者推荐三本经典的书籍《代码整洁之道 》、《编写可读代码的艺术》、《重构:改善既有代码的设计》，下文重点将从注释、命名、方法、异常、单元测试等多个方面总结了一些代码整洁最佳实践，大部分是笔者总结于以上三本书中的精华，也有部分是笔者工程实践的总结。篇幅有限，本文将总结性给出一些实践建议，后续会有文章来给出一些代码整洁之道的事例。</p>
+<h3 id="一、注释"><a href="#一、注释" class="headerlink" title="一、注释"></a>一、注释</h3><pre><code>不要给不好的名字加注释，一个好的名字比好的注释更重要；
+
+不要“拐杖注释”，好代码 &gt; 坏代码 + 好注释；
+
+在文件/类级别使用全局注释来解释所有部分如何工作；
+
+一定要给常量加注释；
+
+团队统一定义标记：
+
+    TODO  待处理的问题；
+
+    FIXME  已知有问题的代码；
+
+    HACK 不得不采用的粗糙的解决方案；
+
+在注释中用精心挑选的输入输出例子进行说明；
+
+注释应该声明代码的高层次意图，而非明显的细节；
+
+不要在代码中加入代码的著作信息，git可以干的事情不要交给代码；
+
+源代码中的html注释是一种厌物, 增加阅读难度；
+
+注释一定要描述离它最近的代码；
+
+注释一定要与代码对应；
+
+公共api需要添加注释，其它代码谨慎使用注释；
+
+典型的烂注释：
+
+    不恰当的信息；
+
+    废弃的注释；
+
+    冗余注释；
+
+    糟糕的注释；
+
+    注释掉的代码；
+
+唯一真正好的注释是你想办法不去写的注释：
+
+    不要有循规式注释，比如setter/getter注释；
+
+    不要添加日志式注释，比如修改时间等信息（git可以做的事情）；
+
+    注释一定是表达代码之外的东西，代码可以包含的内容，注释中一定不要出现；
+
+    如果有必要注释，请注释意图（why），而不要去注释实现（how)，大家都会看代码；
+
+    适当添加警示注释；
+</code></pre><h3 id="二、命名"><a href="#二、命名" class="headerlink" title="二、命名"></a>二、命名</h3><pre><code>尽可能使用标准命名方法，比如设计模式，通用学术名词等；
+
+命名要找更有表现力的词：
+
+    使用更专业的词，比如不用get而使用fetch或者download；
+
+    避免空泛的名字，像tmp；
+
+    使用具体的名字来细致的描述事物；
+
+    给变量名带上重要的细节，比如加上单位ms等；
+
+    为作用域大的名字采用更长的名字，作用域小的使用短名字；
+
+    变量类型为布尔值表达加上is，has，can，should这样的词会更明确；
+
+变量名称长短应该与其作用域对应；
+
+别害怕长名称，长而具有描述性的名称比短而令人费解的名称好；
+
+函数名称应该说明副作用，名称应该表达函数，变量或类的一切信息，请不要掩盖副作用，比如CreateAndReturnXXX；
+</code></pre><h3 id="三、方法"><a href="#三、方法" class="headerlink" title="三、方法"></a>三、方法</h3><pre><code>函数不应该有100行那么长，20行封顶最好：
+
+    if else while等控制语句其中代码块应该只有一行，也就是一个函数调用语句；
+
+    函数的锁进层次不应该多于两层；
+
+    一个函数只做一件事，一个函数不应该能抽象出另外一个函数；
+
+某个公共函数调用的私有函数紧随其后；
+
+最理想的参数是零参数，最长不要超过三个入参，尽量不要输出参数：
+
+    如果函数传入三个及以上参数最好将其抽象为类；
+
+    标识参数十分丑陋，向函数传入布尔值用于区分不同业务的做法很丑陋，应该拆分为多个函数；
+
+别返回null值，抛出异常或者返回特殊对象，尽量避免NPE；
+
+别传入null值；
+</code></pre><h3 id="四、异常与错误"><a href="#四、异常与错误" class="headerlink" title="四、异常与错误"></a>四、异常与错误</h3><pre><code>抽离try catch包含的代码块，其中代码块抽象为一个函数；
+
+抛出的每个异常，都应当提供足够的环境说明，已便判断错误的来源与处所；
+
+不要将系统错误归咎于偶然事件；
+</code></pre><h3 id="五、并发"><a href="#五、并发" class="headerlink" title="五、并发"></a>五、并发</h3><pre><code>分离并发相关代码与其它代码；
+
+严格限制对可能被共享的数据的访问；
+
+避免使用一个共享对象的多个同步方法；
+
+保持同步区域微小，尽可能少设计临界区；
+</code></pre><h3 id="六、单元测试"><a href="#六、单元测试" class="headerlink" title="六、单元测试"></a>六、单元测试</h3><pre><code>不要怕单元测试的方法名字太长或者繁琐，测试函数的名称就像注释；
+
+不要追求太高的测试覆盖率，测试代码前面90%通常比后面10%花的时间少；
+
+使用最简单的并且能够完整运用代码的测试输入；；
+
+给测试函数取一个完整性的描述性名字，比如  Test _；
+
+测试代码与生产代码一样重要；
+
+如果测试代码不能保证整洁，你就会很快失去他们；
+
+每个测试一个断言，单个测试中断言数量应该最小化也就是一个断言；
+
+FIRST原则：
+
+    快速 Fast；
+
+    独立 Independent  测试应该相互独立；
+
+    可重复 Repeatable  测试应当在任何环境中重复通过；
+
+    自足验证 Self-Validating   测试应该有布尔值输出；
+
+    及时  Timely   最好的方式是TDD；
+</code></pre><h3 id="七、代码结构"><a href="#七、代码结构" class="headerlink" title="七、代码结构"></a>七、代码结构</h3><pre><code>代码行长度控制在100-120个字符；
+
+可能用大多数为200行，最长500行的单个文件构造出色的系统；
+
+关系密切的代码应该相互靠近：
+
+    变量声明应该靠近其使用位置；
+
+    若某个函数调用了另外一个，应该把他们放在一起，而且调用者应该放在被调用者上面；
+
+    自上向下展示函数调用依赖顺序；
+
+应该把解释条件意图的函数抽离出来，尽可能将条件表达为肯定形式；
+
+不要继承常量，比如接口中定义常量，不要使用继承欺骗编程语言的作用范围规则；
+
+模块不应了解它所操作对象的内部情况；
+
+DTO（Data Transfer Objects）是一个只有公共变量没有函数的类；
+
+对象暴露行为，隐藏数据；
+
+不要使用“尤达表示法” 如 if(null == obj)，现代编译器对if(obj = null)这样的代码会给出警告；
+
+一般情况使用if else，简单语句使用三目运算符；
+
+通常来讲提早返回可以减少嵌套并让代码整洁；
+</code></pre><h3 id="八、设计"><a href="#八、设计" class="headerlink" title="八、设计"></a>八、设计</h3><pre><code>类应该足够短小：
+
+    类应该满足单一权责原则（SRP），类和模块只有一个修改理由；
+
+    类应该只有少量的实体变量；
+
+    类应该遵循依赖倒置原则 DIP（Dependency Inversion Principle），类应该依赖于抽象而不是依赖于具体细节；
+
+    类中的方法越少越好，函数知道的变量越少越好，类拥有的实体变量越少越好；
+
+通过减少变量的数量和让他们尽量“轻量级”来让代码更有可读性：
+
+    减少变量；
+
+    缩小变量的作用域；
+
+    只写一次的变量更好，如常量；
+
+最好读的代码就是没有代码：
+
+    从项目中消除不必要的功能，不要过度设计；
+
+    从新考虑需求，解决版本最简单的问题，只要能完成工作就行；
+
+    经常性地通读标准库的整个API，保持对他们的熟悉程度；
+
+简单设计：
+
+    运行所有测试；
+
+    不可重复；
+
+    表达了程序员的意图；
+
+    尽可能减少类和方法的数量；
+
+    以上规则按重要程度排列；
+
+无论是设计系统或者单独模块，别忘了使用大概可工作的最简单方案；
+
+整洁的代码只提供一种而非多种做一件事的途径，他只有尽量少的依赖。明确定义并提供尽量少的API；
+
+减少重复代码，提高表达力，提早构建，简单抽象；
+</code></pre><h3 id="九、小结"><a href="#九、小结" class="headerlink" title="九、小结"></a>九、小结</h3><p>作为代码整洁之道系列的第一篇，本文从注释、命名、方法，单元测试，并发等视角简单给出了一些最佳实践，下文我们会展开来从每个方面介绍更多的实践事例。相信每一个优秀的工程师都有一颗追求卓越代码的心，在代码整洁工程实践上你有哪些好的建议？数百人协作开发的代码如何保证代码整洁一致性？欢迎大家来讨论。</p>
+<p>原文地址：<a href="https://yq.aliyun.com/articles/598076?utm_content=m_51055" target="_blank" rel="noopener">https://yq.aliyun.com/articles/598076?utm_content=m_51055</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/WeChanQR.png',
+  alipayImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/AliPayQR.jpg'
+});
+</script>
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/07/12/浅析ActionContext与ServletActionContext的区别/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">浅析ActionContext与ServletActionContext的区别</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、注释"><span class="nav-number">1.</span> <span class="nav-text">一、注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、命名"><span class="nav-number">2.</span> <span class="nav-text">二、命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、方法"><span class="nav-number">3.</span> <span class="nav-text">三、方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、异常与错误"><span class="nav-number">4.</span> <span class="nav-text">四、异常与错误</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、并发"><span class="nav-number">5.</span> <span class="nav-text">五、并发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、单元测试"><span class="nav-number">6.</span> <span class="nav-text">六、单元测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、代码结构"><span class="nav-number">7.</span> <span class="nav-text">七、代码结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、设计"><span class="nav-number">8.</span> <span class="nav-text">八、设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、小结"><span class="nav-number">9.</span> <span class="nav-text">九、小结</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="https://github.com/jasondeepny" target="_blank">jasondeepny</a></p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2018 Jasondeepny Blog All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Jasondeepny Blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 Jason All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
