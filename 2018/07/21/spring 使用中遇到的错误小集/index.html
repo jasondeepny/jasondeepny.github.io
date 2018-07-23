@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://wx3.sinaimg.cn/mw690/0060lm7Tly1fthtvs69tuj310q0bq0u9.jpg">
 <meta property="og:image" content="http://wx2.sinaimg.cn/mw690/0060lm7Tly1fthtw6oxqej30uq0b2jst.jpg">
 <meta property="og:image" content="http://wx1.sinaimg.cn/mw690/0060lm7Tly1fthtrl5hkej30iz0dvwln.jpg">
-<meta property="og:updated_time" content="2018-07-21T14:49:37.639Z">
+<meta property="og:updated_time" content="2018-07-23T14:35:43.711Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring 使用中遇到的错误小集">
 <meta name="twitter:description" content="spring Junit单元测试事务管理报错：java.lang.IllegalStateException: Failed to load ApplicationContext解决办法错误信息如下： Caused by: org.springframework.beans.factory.BeanCreationException:  Error creating bean with name">
@@ -268,6 +268,20 @@ Caused by: java.lang.IllegalArgumentException: Unable to locate method [before] 
 <blockquote>
 <p>最终用的是第三种方案搞定!</p>
 </blockquote>
+<blockquote>
+<p>最终用的是第三种方案搞定!</p>
+</blockquote>
+<h3 id="Junit-少有的错误"><a href="#Junit-少有的错误" class="headerlink" title="Junit 少有的错误:"></a>Junit 少有的错误:</h3><blockquote>
+<p>java.lang.Exception: No tests found matching [{ExactMatcher:fDisplayName=testDemo], {ExactMatcher:fDisplayName=testDemo(com.itheima.service.MyProxy)],{LeadingIdentifierMatcher:fClassName=com.itheima.service.MyProxy,fLeadingIdentifier=testDemo]]from org.junit.internal.requests.ClassRequest@2d38eb89</p>
+</blockquote>
+<p>总结：<br>使用Junit单元测试时，要注意以下几个地方：</p>
+<ul>
+<li>在测试方法上要有@Test注解</li>
+<li>测试方法不能用static静态修饰</li>
+<li>测试方法不能有返回值</li>
+<li>测试方法不能有参数</li>
+</ul>
+<p>如果测试类继承基础测试类，那么这个类中的所有测试方法都要符合以上四条规定.</p>
 
       
     </div>
@@ -281,8 +295,8 @@ var a = new Donate({
   title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
   btnText: 'Donate', // 可选参数，打赏按钮文字
   el: document.getElementById('donation_div'),
-  wechatImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/WeChanQR.png',
-  alipayImage: 'https://raw.githubusercontent.com/iTimeTraveler/iTimeTraveler.github.io/site/source/about/donate/images/AliPayQR.jpg'
+  wechatImage: 'https://i.loli.net/2018/07/23/5b55ec199a92c.png',
+  alipayImage: 'https://i.loli.net/2018/07/23/5b55ebbc266c2.jpg'
 });
 </script>
       
@@ -337,7 +351,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">Contents</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-Junit单元测试事务管理报错：java-lang-IllegalStateException-Failed-to-load-ApplicationContext解决办法"><span class="nav-number">1.</span> <span class="nav-text">spring Junit单元测试事务管理报错：java.lang.IllegalStateException: Failed to load ApplicationContext解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-配置异常解决办法之Referenced-file-contains-errors"><span class="nav-number">2.</span> <span class="nav-text">Spring 配置异常解决办法之Referenced file contains errors</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#spring-Junit单元测试事务管理报错：java-lang-IllegalStateException-Failed-to-load-ApplicationContext解决办法"><span class="nav-number">1.</span> <span class="nav-text">spring Junit单元测试事务管理报错：java.lang.IllegalStateException: Failed to load ApplicationContext解决办法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-配置异常解决办法之Referenced-file-contains-errors"><span class="nav-number">2.</span> <span class="nav-text">Spring 配置异常解决办法之Referenced file contains errors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Junit-少有的错误"><span class="nav-number">3.</span> <span class="nav-text">Junit 少有的错误:</span></a></li></ol>
     
     </div>
   </aside>
