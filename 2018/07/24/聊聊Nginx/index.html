@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/07/24/聊聊Nginx/index.html">
 <meta property="og:site_name" content="Jasondeepny Blog">
 <meta property="og:description" content="Nginx什么是Nginx？Nginx是一个高性能的HTTP和反向代理服务器，也是一个IMAP/POP3/SMTP服务器Nginx是一款轻量级的Web服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器 目前使用的最多的web服务器或者代理服务器，像淘宝、新浪、网易、迅雷等都在使用 为什么要用Nginx？优点：  跨平台、配置简单 非阻塞、高并发连接：处理2-3万并发连接数，官方监测能">
-<meta property="og:locale" content="zh-TW">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2018/07/24/5b57430b2711a.png">
 <meta property="og:image" content="https://i.loli.net/2018/07/24/5b574349bb245.png">
 <meta property="og:image" content="https://i.loli.net/2018/07/24/5b5743afbbd78.png">
@@ -105,15 +105,15 @@
             <div class="navbar-collapse collapse">
               <ul class="hnav navbar-nav">
                 
-                  <li> <a class="main-nav-link" href="/">首頁</a> </li>
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/archives">彙整</a> </li>
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/categories">分類</a> </li>
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/tags">標籤</a> </li>
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/about">關于</a> </li>
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
                 
                   <li><div id="search-form-wrap">
 
@@ -125,7 +125,7 @@
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="請輸入關鍵詞..." />
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -138,10 +138,10 @@
     var INSIGHT_CONFIG = {
         TRANSLATION: {
             POSTS: '文章',
-            PAGES: '頁面',
-            CATEGORIES: '分類',
-            TAGS: '標籤',
-            UNTITLED: '(無標題)',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',
@@ -190,7 +190,7 @@
       
 	<a class="article-views">
 	<span id="busuanzi_container_page_pv">
-		閱讀量<span id="busuanzi_value_page_pv"></span>
+		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
 	</a>
 
@@ -254,7 +254,7 @@
 <script>
 var a = new Donate({
   title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
-  btnText: '打賞支持', // 可选参数，打赏按钮文字
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
   el: document.getElementById('donation_div'),
   wechatImage: 'https://i.loli.net/2018/07/23/5b55ec199a92c.png',
   alipayImage: 'https://i.loli.net/2018/07/23/5b55ebbc266c2.jpg'
@@ -296,7 +296,7 @@ var a = new Donate({
 <nav id="article-nav">
   
     <a href="/2018/07/25/多线程问题/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           多线程问题
@@ -306,7 +306,7 @@ var a = new Donate({
   
   
     <a href="/2018/07/21/spring 使用中遇到的错误小集/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">spring 使用中遇到的错误小集</div>
     </a>
   
@@ -319,7 +319,7 @@ var a = new Donate({
 
   <aside id="toc-sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目錄</strong>
+    <strong class="toc-title">文章目录</strong>
     
         <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx"><span class="nav-number">1.</span> <span class="nav-text">Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Nginx？"><span class="nav-number">1.0.1.</span> <span class="nav-text">什么是Nginx？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要用Nginx？"><span class="nav-number">1.0.2.</span> <span class="nav-text">为什么要用Nginx？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么Nginx性能这么高？"><span class="nav-number">1.0.3.</span> <span class="nav-text">为什么Nginx性能这么高？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx是如何实现高并发的"><span class="nav-number">1.0.4.</span> <span class="nav-text">Nginx是如何实现高并发的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么不使用多线程？"><span class="nav-number">1.0.5.</span> <span class="nav-text">为什么不使用多线程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx是如何处理一个请求的呢？"><span class="nav-number">1.0.6.</span> <span class="nav-text">Nginx是如何处理一个请求的呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正向代理"><span class="nav-number">1.0.7.</span> <span class="nav-text">正向代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反向代理"><span class="nav-number">1.0.8.</span> <span class="nav-text">反向代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态资源、静态资源分离"><span class="nav-number">1.0.9.</span> <span class="nav-text">动态资源、静态资源分离</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要做动、静分离？"><span class="nav-number">1.0.10.</span> <span class="nav-text">为什么要做动、静分离？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#负载均衡"><span class="nav-number">1.0.11.</span> <span class="nav-text">负载均衡</span></a></li></ol></li></ol></li></ol>
     
@@ -339,8 +339,8 @@ var a = new Donate({
 	      
 	      
     		<p class="busuanzi_uv">
-				訪客數 : <span id="busuanzi_value_site_uv"></span> |  
-				訪問量 : <span id="busuanzi_value_site_pv"></span>
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
 		    </p>
   		   
 		</div>

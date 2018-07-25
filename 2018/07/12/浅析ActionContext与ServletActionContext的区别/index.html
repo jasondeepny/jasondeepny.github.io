@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/07/12/浅析ActionContext与ServletActionContext的区别/index.html">
 <meta property="og:site_name" content="Jasondeepny Blog">
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;在学习Struts的过程中,很多人对于ActionContext与ServletActionContext两个对象之间的关系不是很清楚,这两个对象尤其是ActionContext对于Struts的学习至关重要,所以接下来我对二者来做一个较为详细的分析.">
-<meta property="og:locale" content="zh-TW">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2018-07-16T10:36:23.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅析ActionContext与ServletActionContext的区别">
@@ -101,15 +101,15 @@
             <div class="navbar-collapse collapse">
               <ul class="hnav navbar-nav">
                 
-                  <li> <a class="main-nav-link" href="/">首頁</a> </li>
+                  <li> <a class="main-nav-link" href="/">首页</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/archives">彙整</a> </li>
+                  <li> <a class="main-nav-link" href="/archives">归档</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/categories">分類</a> </li>
+                  <li> <a class="main-nav-link" href="/categories">分类</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/tags">標籤</a> </li>
+                  <li> <a class="main-nav-link" href="/tags">标签</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/about">關于</a> </li>
+                  <li> <a class="main-nav-link" href="/about">关于</a> </li>
                 
                   <li><div id="search-form-wrap">
 
@@ -121,7 +121,7 @@
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="請輸入關鍵詞..." />
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -134,10 +134,10 @@
     var INSIGHT_CONFIG = {
         TRANSLATION: {
             POSTS: '文章',
-            PAGES: '頁面',
-            CATEGORIES: '分類',
-            TAGS: '標籤',
-            UNTITLED: '(無標題)',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',
@@ -186,7 +186,7 @@
       
 	<a class="article-views">
 	<span id="busuanzi_container_page_pv">
-		閱讀量<span id="busuanzi_value_page_pv"></span>
+		阅读量<span id="busuanzi_value_page_pv"></span>
 	</span>
 	</a>
 
@@ -239,7 +239,7 @@
 <script>
 var a = new Donate({
   title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
-  btnText: '打賞支持', // 可选参数，打赏按钮文字
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
   el: document.getElementById('donation_div'),
   wechatImage: 'https://i.loli.net/2018/07/23/5b55ec199a92c.png',
   alipayImage: 'https://i.loli.net/2018/07/23/5b55ebbc266c2.jpg'
@@ -281,7 +281,7 @@ var a = new Donate({
 <nav id="article-nav">
   
     <a href="/2018/07/16/如何避免自己写的代码成为别人眼中的一坨屎/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">上一篇</strong>
       <div class="article-nav-title">
         
           如何避免自己写的代码成为别人眼中的一坨屎!
@@ -291,7 +291,7 @@ var a = new Donate({
   
   
     <a href="/2018/07/11/redis-常见问题及其解决方案/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">redis-常见问题及其解决方案</div>
     </a>
   
@@ -304,7 +304,7 @@ var a = new Donate({
 
   <aside id="toc-sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">文章目錄</strong>
+    <strong class="toc-title">文章目录</strong>
     
         <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ActionContext"><span class="nav-number">1.</span> <span class="nav-text">ActionContext</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-ActionContext的线程安全性"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 ActionContext的线程安全性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-访问的是Map"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 访问的是Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-使用SessionAware接口"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 使用SessionAware接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-使用其它包装接口"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 使用其它包装接口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ServletActionContext"><span class="nav-number">2.</span> <span class="nav-text">ServletActionContext</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-ServletActionContext概述"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 ServletActionContext概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-基本使用"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 基本使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-通过IoC-DI的方式来获取相应的Servlet对象"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 通过IoC/DI的方式来获取相应的Servlet对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-ActionContext和ServletActionContext"><span class="nav-number">3.</span> <span class="nav-text">3 ActionContext和ServletActionContext</span></a></li></ol>
     
@@ -324,8 +324,8 @@ var a = new Donate({
 	      
 	      
     		<p class="busuanzi_uv">
-				訪客數 : <span id="busuanzi_value_site_uv"></span> |  
-				訪問量 : <span id="busuanzi_value_site_pv"></span>
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
 		    </p>
   		   
 		</div>
