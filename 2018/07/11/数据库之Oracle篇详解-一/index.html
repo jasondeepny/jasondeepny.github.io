@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/07/11/数据库之Oracle篇详解-一/index.html">
 <meta property="og:site_name" content="Jasondeepny Blog">
 <meta property="og:description" content="01.什么是ORACLE.aviOracle 数据库ORACLE 数据库的特点  支持多用户、大事务量的事务处理 数据安全性和完整性控制 支持分布式数据处理 可移植性">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="zh-TW">
 <meta property="og:image" content="http://os4z8t7lb.bkt.clouddn.com/201802052351_41.png">
 <meta property="og:image" content="http://os4z8t7lb.bkt.clouddn.com/201802052352_10.png">
 <meta property="og:image" content="http://os4z8t7lb.bkt.clouddn.com/201803250049_580.png">
@@ -107,15 +107,15 @@
             <div class="navbar-collapse collapse">
               <ul class="hnav navbar-nav">
                 
-                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                  <li> <a class="main-nav-link" href="/">首頁</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                  <li> <a class="main-nav-link" href="/archives">彙整</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                  <li> <a class="main-nav-link" href="/categories">分類</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                  <li> <a class="main-nav-link" href="/tags">標籤</a> </li>
                 
-                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                  <li> <a class="main-nav-link" href="/about">關于</a> </li>
                 
                   <li><div id="search-form-wrap">
 
@@ -127,7 +127,7 @@
     <div class="ins-search-mask"></div>
     <div class="ins-search-container">
         <div class="ins-input-wrapper">
-            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <input type="text" class="ins-search-input" placeholder="請輸入關鍵詞..." />
             <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="ins-section-wrapper">
@@ -139,11 +139,11 @@
 (function (window) {
     var INSIGHT_CONFIG = {
         TRANSLATION: {
-            POSTS: 'Posts',
-            PAGES: 'Pages',
-            CATEGORIES: 'Categories',
-            TAGS: 'Tags',
-            UNTITLED: '(Untitled)',
+            POSTS: '文章',
+            PAGES: '頁面',
+            CATEGORIES: '分類',
+            TAGS: '標籤',
+            UNTITLED: '(無標題)',
         },
         ROOT_URL: '/',
         CONTENT_URL: '/content.json',
@@ -192,7 +192,7 @@
       
 	<a class="article-views">
 	<span id="busuanzi_container_page_pv">
-		PV:<span id="busuanzi_value_page_pv"></span>
+		閱讀量<span id="busuanzi_value_page_pv"></span>
 	</span>
 	</a>
 
@@ -267,7 +267,7 @@
 <script>
 var a = new Donate({
   title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
-  btnText: 'Donate', // 可选参数，打赏按钮文字
+  btnText: '打賞支持', // 可选参数，打赏按钮文字
   el: document.getElementById('donation_div'),
   wechatImage: 'https://i.loli.net/2018/07/23/5b55ec199a92c.png',
   alipayImage: 'https://i.loli.net/2018/07/23/5b55ebbc266c2.jpg'
@@ -332,7 +332,7 @@ var a = new Donate({
 
   <aside id="toc-sidebar">
     <div id="toc" class="toc-article">
-    <strong class="toc-title">Contents</strong>
+    <strong class="toc-title">文章目錄</strong>
     
         <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#01-什么是ORACLE-avi"><span class="nav-number">1.</span> <span class="nav-text">01.什么是ORACLE.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02-挂载window2003-avi"><span class="nav-number">2.</span> <span class="nav-text">02.挂载window2003.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03-网络配置-avi"><span class="nav-number">3.</span> <span class="nav-text">03.网络配置.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#04-ORACLE安装及体系结构讲解-avi"><span class="nav-number">4.</span> <span class="nav-text">04.ORACLE安装及体系结构讲解.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#05-远程连接ORACLE-avi"><span class="nav-number">5.</span> <span class="nav-text">05.远程连接ORACLE.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-可视化工具安装与配置-avi"><span class="nav-number">6.</span> <span class="nav-text">06.可视化工具安装与配置.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-需求分析与表结构-avi"><span class="nav-number">7.</span> <span class="nav-text">07.需求分析与表结构.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#08-创建表空间-avi"><span class="nav-number">8.</span> <span class="nav-text">08.创建表空间.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#09-创建用户与用户赋权-avi"><span class="nav-number">9.</span> <span class="nav-text">09.创建用户与用户赋权.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-表的创建修改与删除-avi"><span class="nav-number">10.</span> <span class="nav-text">10.表的创建修改与删除.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-数据增删改-avi"><span class="nav-number">11.</span> <span class="nav-text">11.数据增删改.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-JDBC连接Oracle-搭建开发环境和编写工具类-avi"><span class="nav-number">12.</span> <span class="nav-text">12.JDBC连接Oracle-搭建开发环境和编写工具类.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-JDBC连接Oracle-数据的增删改操作-avi"><span class="nav-number">13.</span> <span class="nav-text">13.JDBC连接Oracle-数据的增删改操作.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-整库导出和导入-avi"><span class="nav-number">14.</span> <span class="nav-text">14.整库导出和导入.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-按用户和表导入导出-avi"><span class="nav-number">15.</span> <span class="nav-text">15.按用户和表导入导出.avi</span></a></li></ol>
     
@@ -352,8 +352,8 @@ var a = new Donate({
 	      
 	      
     		<p class="busuanzi_uv">
-				UV : <span id="busuanzi_value_site_uv"></span> |  
-				PV : <span id="busuanzi_value_site_pv"></span>
+				訪客數 : <span id="busuanzi_value_site_uv"></span> |  
+				訪問量 : <span id="busuanzi_value_site_pv"></span>
 		    </p>
   		   
 		</div>
