@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>数据库之oracle篇详解(一) | Jasondeepny Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="Oracle" />
+  
+  
+  
+  
+  <meta name="description" content="01.什么是ORACLE.aviOracle 数据库ORACLE 数据库的特点  支持多用户、大事务量的事务处理 数据安全性和完整性控制 支持分布式数据处理 可移植性">
+<meta name="keywords" content="Oracle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库之Oracle篇详解(一)">
+<meta property="og:url" content="http://yoursite.com/2018/07/11/数据库之Oracle篇详解-一/index.html">
+<meta property="og:site_name" content="Jasondeepny Blog">
+<meta property="og:description" content="01.什么是ORACLE.aviOracle 数据库ORACLE 数据库的特点  支持多用户、大事务量的事务处理 数据安全性和完整性控制 支持分布式数据处理 可移植性">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://os4z8t7lb.bkt.clouddn.com/201802052351_41.png">
+<meta property="og:image" content="http://os4z8t7lb.bkt.clouddn.com/201802052352_10.png">
+<meta property="og:image" content="http://os4z8t7lb.bkt.clouddn.com/201803250049_580.png">
+<meta property="og:image" content="http://os4z8t7lb.bkt.clouddn.com/201803250817_859.png">
+<meta property="og:image" content="http://os4z8t7lb.bkt.clouddn.com/201802052337_94.png">
+<meta property="og:updated_time" content="2018-07-16T10:37:49.602Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数据库之Oracle篇详解(一)">
+<meta name="twitter:description" content="01.什么是ORACLE.aviOracle 数据库ORACLE 数据库的特点  支持多用户、大事务量的事务处理 数据安全性和完整性控制 支持分布式数据处理 可移植性">
+<meta name="twitter:image" content="http://os4z8t7lb.bkt.clouddn.com/201802052351_41.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Jasondeepny Blog" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/9749f0/00000000000000000001008f/27/l?subset_id=2&fvd=n5) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/90cf9f/000000000000000000010091/27/l?subset_id=2&fvd=n7) format("woff2");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/8a5494/000000000000000000013365/27/l?subset_id=2&fvd=n4) format("woff2");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt;src:url(https://use.typekit.net/af/d337d8/000000000000000000010095/27/l?subset_id=2&fvd=i4) format("woff2");font-weight:400;font-style:italic;}</style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+</head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-数据库之Oracle篇详解-一" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      数据库之Oracle篇详解(一)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/07/11/数据库之Oracle篇详解-一/" class="article-date">
+	  <time datetime="2018-07-10T16:14:00.000Z" itemprop="datePublished">2018-07-11</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="01-什么是ORACLE-avi"><a href="#01-什么是ORACLE-avi" class="headerlink" title="01.什么是ORACLE.avi"></a>01.什么是ORACLE.avi</h3><p>Oracle 数据库<br>ORACLE 数据库的特点</p>
+<ol>
+<li>支持多用户、大事务量的事务处理</li>
+<li>数据安全性和完整性控制</li>
+<li>支持分布式数据处理</li>
+<li>可移植性</li>
+</ol>
+<a id="more"></a>
+<h3 id="02-挂载window2003-avi"><a href="#02-挂载window2003-avi" class="headerlink" title="02.挂载window2003.avi"></a>02.挂载window2003.avi</h3><h3 id="03-网络配置-avi"><a href="#03-网络配置-avi" class="headerlink" title="03.网络配置.avi"></a>03.网络配置.avi</h3><p>使用<code>ping</code>命令测试本机到虚拟机的网络是否连通<br><code>ping 192.168.246.110</code></p>
+<h3 id="04-ORACLE安装及体系结构讲解-avi"><a href="#04-ORACLE安装及体系结构讲解-avi" class="headerlink" title="04.ORACLE安装及体系结构讲解.avi"></a>04.ORACLE安装及体系结构讲解.avi</h3><p>ORACLE 体系结构<br><img src="http://os4z8t7lb.bkt.clouddn.com/201802052351_41.png" alt="体系结构"><br><img src="http://os4z8t7lb.bkt.clouddn.com/201802052352_10.png" alt="体系结构"></p>
+<p>几个概念</p>
+<ol>
+<li>数据库实例  orcl</li>
+<li>表空间：管理dbf文件</li>
+<li>用户</li>
+<li>表</li>
+</ol>
+<p>几个关系<br>一个实例对应多个表空间<br>一个表空间对应多个用户<br>一个表空间对应多个数据文件(.dbf/.ora)<br>一个用户对应多个表<br>一个表中的数据存储在多个数据文件中<br><img src="http://os4z8t7lb.bkt.clouddn.com/201803250049_580.png" alt="逻辑结构"></p>
+<h3 id="05-远程连接ORACLE-avi"><a href="#05-远程连接ORACLE-avi" class="headerlink" title="05.远程连接ORACLE.avi"></a>05.远程连接ORACLE.avi</h3><p><img src="http://os4z8t7lb.bkt.clouddn.com/201803250817_859.png" alt="数据库远程连接"></p>
+<p>使用工具<code>instantclient_12_1</code></p>
+<h3 id="06-可视化工具安装与配置-avi"><a href="#06-可视化工具安装与配置-avi" class="headerlink" title="06.可视化工具安装与配置.avi"></a>06.可视化工具安装与配置.avi</h3><ol>
+<li>配置PL/SQL developer</li>
+<li>拷贝tnsnames.ora  修改IP</li>
+<li>配置环境变量（tnsnames.ora路径，中文配置）</li>
+</ol>
+<p>设置中文编码<br>查看服务器端编码 <code>select userenv(&#39;language&#39;) from dual</code><br>结果为:<code>AMERICAN_AMERICA.ZHS16GBK</code><br>计算机-&gt;属性-&gt;高级系统设置-&gt;环境变量-&gt;新建设置变量名:<code>NLS_LANG</code><br>变量值:查到的值<code>AMERICAN_AMERICA.ZHS16GBK</code></p>
+<blockquote>
+<p>注意事项：安装目录不能有中文和空格，否则连接不上</p>
+</blockquote>
+<h3 id="07-需求分析与表结构-avi"><a href="#07-需求分析与表结构-avi" class="headerlink" title="07.需求分析与表结构.avi"></a>07.需求分析与表结构.avi</h3><p><img src="http://os4z8t7lb.bkt.clouddn.com/201802052337_94.png" alt="表结构"></p>
+<h3 id="08-创建表空间-avi"><a href="#08-创建表空间-avi" class="headerlink" title="08.创建表空间.avi"></a>08.创建表空间.avi</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> waterboss</span><br><span class="line"><span class="keyword">datafile</span> <span class="string">'c:\waterboss.dbf'</span></span><br><span class="line"><span class="keyword">size</span> <span class="number">100</span>m</span><br><span class="line"><span class="keyword">autoextend</span> <span class="keyword">on</span></span><br><span class="line"><span class="keyword">next</span> <span class="number">10</span>m</span><br></pre></td></tr></table></figure>
+<h3 id="09-创建用户与用户赋权-avi"><a href="#09-创建用户与用户赋权-avi" class="headerlink" title="09.创建用户与用户赋权.avi"></a>09.创建用户与用户赋权.avi</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">user</span> wateruser</span><br><span class="line"><span class="keyword">identified</span> <span class="keyword">by</span> itcast</span><br><span class="line"><span class="keyword">default</span> <span class="keyword">tablespace</span> waterboss</span><br></pre></td></tr></table></figure>
+<p>给用户设置权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">grant</span> dba <span class="keyword">to</span> wateruser</span><br></pre></td></tr></table></figure>
+<h3 id="10-表的创建修改与删除-avi"><a href="#10-表的创建修改与删除-avi" class="headerlink" title="10.表的创建修改与删除.avi"></a>10.表的创建修改与删除.avi</h3><p>SQL可分为:</p>
+<ol>
+<li>数据定义语言（DDL） : Data Definition Language<br>用于建立、修改、删除数据库对象，包括创建语句(CREATE)、修改语句(ALTER)、删除语句(DROP)，比如使用CREATE TABLE创建表，使用ALTER TABLE修改表，使用DROPTABLE删除表等动作。==这类语言不需要事务的参与，自动提交。==</li>
+<li>数据操纵语言（DML） : Data Manipulation Language<br>用于改变数据库数据，包括INSERT、UPDATE、DELETE三条语句。其中，INSERT语句用于将数据插入到数据库中，UPDATE语句用于更新数据库中已存在的数据，DELETE用于删除数据库中已存在的数据。==DML语言和事务是相关的，执行完DML操作后必须经过事务控制语句提交后才真正的将改变应用到数据库中。==</li>
+<li>事务控制语言（TCL）：Transaction Control Language)<br>用来维护数据一致性的语句，包括提交(COMMIT)、回滚(ROLLBACK)、保存点(SAVEPOINT)三条语句，其中COMMIT用来确认已经进行的数据库改变， ROLLBACK语句用来取消已经进行的数据库改变，当执行DML操作后(也就是上面说的增加、修改、删除等动作)，可以使用COMMIT语句来确认这种改变，或者使用ROLLBACK取消这种改变。SAVEPOINT语句用来设置保存点，使当前的事务可以回退到指定的保存点，便于取消部分改变。</li>
+<li>数据查询语言（DQL）：Data Query Language<br>用来查询所需要的数据。使用最广泛，语法灵活复杂。</li>
+<li>数据控制语言（DCL） : Data Control Language<br>用于执行权限的授予和收回操作、创建用户等，包括授予(GRANT)语句，收回(REVOKE)语句，CREATE USER语句，其中GRANT用于给用户或角色授予权限， REVOKE用于收回用户或角色已有的权限。==DCL语句也不需要事务的参与，是自动提交的。==</li>
+</ol>
+<p>数据类型<br>NUMBER表示数字类型，经常被定义成NUMBER（7，2）形式，其中：<br>    P表示数字的总位数<br>    S表示小数点后面的位数<br>CHAR表示固定长度的字符类型，经常被定义成CHAR（5）形式, N表示占用的字节数，N的最大取值是2000<br>VARCHAR2表示变长的字符类型，定义格式是VARCHAR2（10）, N表示最多可占用的字节数，最大长度是4000字节</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--表的创建</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名称(</span><br><span class="line">    字段名 类型(长度) primary <span class="keyword">key</span>,</span><br><span class="line">    字段名 类型(长度),</span><br><span class="line">    .......</span><br><span class="line">);</span><br><span class="line"><span class="comment">--表的修改</span></span><br><span class="line"><span class="comment">--增加字段</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名称 <span class="keyword">ADD</span>(列名 <span class="number">1</span> 类型 [<span class="keyword">DEFAULT</span> 默认值]，列名 <span class="number">1</span> 类型</span><br><span class="line">[<span class="keyword">DEFAULT</span> 默认值]...)</span><br><span class="line"><span class="comment">--修改字段</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名称 <span class="keyword">MODIFY</span>(列名 <span class="number">1</span> 类型 [<span class="keyword">DEFAULT</span> 默认值]，列名 <span class="number">1</span> 类型</span><br><span class="line">[<span class="keyword">DEFAULT</span> 默认值]...)</span><br><span class="line"><span class="comment">--修改字段名</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名称 <span class="keyword">RENAME</span> <span class="keyword">COLUMN</span> 原列名 <span class="keyword">TO</span> 新列名</span><br><span class="line"><span class="comment">--删除一个字段</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名称 <span class="keyword">DROP</span> <span class="keyword">COLUMN</span> 列名</span><br><span class="line"><span class="comment">--删除多个字段</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名称 <span class="keyword">DROP</span> (列名 <span class="number">1</span>,列名 <span class="number">2.</span>..)</span><br><span class="line"><span class="comment">--表的删除</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> 表名称</span><br></pre></td></tr></table></figure>
+<h3 id="11-数据增删改-avi"><a href="#11-数据增删改-avi" class="headerlink" title="11.数据增删改.avi"></a>11.数据增删改.avi</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--插入数据</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名[(列名 <span class="number">1</span>，列名 <span class="number">2</span>，...)]<span class="keyword">VALUES</span>(值 <span class="number">1</span>，值 <span class="number">2</span>，...)</span><br><span class="line"><span class="comment">--修改数据</span></span><br><span class="line"><span class="keyword">UPDATE</span> 表名 <span class="keyword">SET</span> 列名 <span class="number">1</span>=值 <span class="number">1</span>，列名 <span class="number">2</span>=值 <span class="number">2</span>，....WHERE 修改条件</span><br><span class="line"><span class="comment">--删除数据</span></span><br><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> 表名 <span class="keyword">WHERE</span> 删除条件</span><br></pre></td></tr></table></figure>
+<p>truncate 与delete区别</p>
+<ol>
+<li>delete 删除的数据可以 rollback</li>
+<li>delete 删除可能产生碎片，并且不释放空间</li>
+<li>truncate 是先摧毁表结构，再重构表结构</li>
+</ol>
+<p>DML（insert update,delete）需要提交事务(update/insert/delete)<br>DDL（create drop alter tuncate）不要提交事务（create/drop/alter/truncate）</p>
+<h3 id="12-JDBC连接Oracle-搭建开发环境和编写工具类-avi"><a href="#12-JDBC连接Oracle-搭建开发环境和编写工具类-avi" class="headerlink" title="12.JDBC连接Oracle-搭建开发环境和编写工具类.avi"></a>12.JDBC连接Oracle-搭建开发环境和编写工具类.avi</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.waterboss.dao;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 基本数据访问类</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> Administrator</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BaseDao</span> </span>&#123;</span><br><span class="line"><span class="comment">//加载驱动</span></span><br><span class="line"><span class="keyword">static</span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">            Class.forName(<span class="string">"oracle.jdbc.driver.OracleDriver"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 获取数据库连接</span></span><br><span class="line"><span class="comment">* <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">* <span class="doctag">@throws</span> SQLException</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> java.sql.<span class="function">Connection <span class="title">getConnection</span><span class="params">()</span> <span class="keyword">throws</span> SQLException</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> java.sql.DriverManager.getConnection(<span class="string">"jdbc:oracle:thin:@192.168.80.10:1521:orcl"</span>,<span class="string">"wateruser"</span>, <span class="string">"itcast"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 关闭资源</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> rs</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> stmt</span></span><br><span class="line"><span class="comment">* <span class="doctag">@param</span> conn</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">closeAll</span><span class="params">(java.sql.ResultSet rs, java.sql.Statement stmt,java.sql.Connection conn)</span></span>&#123;</span><br><span class="line">    <span class="comment">//关闭结果集</span></span><br><span class="line">    <span class="keyword">if</span>(rs!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            rs.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//关闭执行对象</span></span><br><span class="line">    <span class="keyword">if</span>(stmt!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            stmt.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//关闭执行对象</span></span><br><span class="line">    <span class="keyword">if</span>(conn!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="13-JDBC连接Oracle-数据的增删改操作-avi"><a href="#13-JDBC连接Oracle-数据的增删改操作-avi" class="headerlink" title="13.JDBC连接Oracle-数据的增删改操作.avi"></a>13.JDBC连接Oracle-数据的增删改操作.avi</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.itcast.waterboss.dao;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> cn.itcast.waterboss.entity.Owners;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 业主数据访问类</span></span><br><span class="line"><span class="comment">* <span class="doctag">@author</span> Administrator</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OwnersDao</span> </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 新增业主</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> owners</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Owners owners)</span></span>&#123;</span><br><span class="line">        java.sql.Connection conn=<span class="keyword">null</span>;</span><br><span class="line">        java.sql.PreparedStatement stmt=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn=BaseDao.getConnection();</span><br><span class="line">            stmt=conn.prepareStatement(<span class="string">"insert into T_OWNERS</span></span><br><span class="line"><span class="string">            values(?,?,?,?,?,?,?)"</span>);</span><br><span class="line">            stmt.setLong(<span class="number">1</span>, owners.getId());</span><br><span class="line">            stmt.setString(<span class="number">2</span>, owners.getName());</span><br><span class="line">            stmt.setLong(<span class="number">3</span>, owners.getAddressid());</span><br><span class="line">            stmt.setString(<span class="number">4</span>, owners.getHousenumber());</span><br><span class="line">            stmt.setString(<span class="number">5</span>, owners.getWatermeter());</span><br><span class="line">            stmt.setDate(<span class="number">6</span>, <span class="keyword">new</span></span><br><span class="line">            java.sql.Date(owners.getAdddate().getTime()));</span><br><span class="line">            stmt.setLong(<span class="number">7</span>, owners.getOwnertypeid());</span><br><span class="line">            stmt.execute();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            BaseDao.closeAll(<span class="keyword">null</span>, stmt, conn);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 修改业主</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> owners</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(Owners owners)</span></span>&#123;</span><br><span class="line">        java.sql.Connection conn=<span class="keyword">null</span>;</span><br><span class="line">        java.sql.PreparedStatement stmt=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn=BaseDao.getConnection();</span><br><span class="line">            stmt=conn.prepareStatement(<span class="string">"update T_OWNERS set</span></span><br><span class="line"><span class="string">            name=?,addressid=?,housenumber=?,"</span></span><br><span class="line">            + <span class="string">"watermeter=?,adddate=?, ownertypeid=? where id=?"</span>);</span><br><span class="line">            stmt.setString(<span class="number">1</span>, owners.getName());</span><br><span class="line">            stmt.setLong(<span class="number">2</span>, owners.getAddressid());</span><br><span class="line">            stmt.setString(<span class="number">3</span>, owners.getHousenumber());</span><br><span class="line">            stmt.setString(<span class="number">4</span>, owners.getWatermeter());</span><br><span class="line">            stmt.setDate(<span class="number">5</span>, <span class="keyword">new</span></span><br><span class="line">            java.sql.Date(owners.getAdddate().getTime()));</span><br><span class="line">            stmt.setLong(<span class="number">6</span>, owners.getOwnertypeid());</span><br><span class="line">            stmt.setLong(<span class="number">7</span>, owners.getId());</span><br><span class="line">            stmt.execute();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            BaseDao.closeAll(<span class="keyword">null</span>, stmt, conn);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 删除业主</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> owners</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">delete</span><span class="params">(Long id)</span></span>&#123;</span><br><span class="line">        java.sql.Connection conn=<span class="keyword">null</span>;</span><br><span class="line">        java.sql.PreparedStatement stmt=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            conn=BaseDao.getConnection();</span><br><span class="line">            stmt=conn.prepareStatement(<span class="string">"delete from T_OWNERS where id=?"</span>);</span><br><span class="line">            stmt.setLong(<span class="number">1</span>, id);</span><br><span class="line">            stmt.execute();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">            BaseDao.closeAll(<span class="keyword">null</span>, stmt, conn);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="14-整库导出和导入-avi"><a href="#14-整库导出和导入-avi" class="headerlink" title="14.整库导出和导入.avi"></a>14.整库导出和导入.avi</h3><p>整库导出命令: <code>exp system/itcast full=y</code><br>指定备份文件的名称导出命令: <code>exp system/itcast file=文件名 full=y</code><br>整库导入命令: <code>imp system/itcast full=y</code><br>指定备份文件的名称导入命令: <code>imp system/itcast full=y file=water.dmp</code><br>如果不指定 <code>file</code> 参数，则默认用备份文件 <code>EXPDAT.DMP</code> 进行导入<br>如果指定 <code>file</code> 参数，则按照 <code>file</code> 指定的备份文件进行恢复</p>
+<h3 id="15-按用户和表导入导出-avi"><a href="#15-按用户和表导入导出-avi" class="headerlink" title="15.按用户和表导入导出.avi"></a>15.按用户和表导入导出.avi</h3><p>按用户导出: <code>exp system/itcast owner=wateruser file=wateruser.dmp</code><br>按用户导入: <code>imp system/itcast   file=wateruser.dmp fromuser=wateruser</code></p>
+<p>按表导出：<code>exp wateruser/itcast file=a.dmp tables=t_account,a_area</code><br>按表导入：<code>imp wateruser/itcast file=a.dmp tables=t_account,a_area</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+<script src="/js/vdonate.js"></script>
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: 'Donate', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://i.loli.net/2018/07/23/5b55ec199a92c.png',
+  alipayImage: 'https://i.loli.net/2018/07/23/5b55ebbc266c2.jpg'
+});
+</script>
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/11/redis-常见问题及其解决方案/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          redis-常见问题及其解决方案
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/10/增强类中的三种方式/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">增强类中的三种方式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#01-什么是ORACLE-avi"><span class="nav-number">1.</span> <span class="nav-text">01.什么是ORACLE.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02-挂载window2003-avi"><span class="nav-number">2.</span> <span class="nav-text">02.挂载window2003.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03-网络配置-avi"><span class="nav-number">3.</span> <span class="nav-text">03.网络配置.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#04-ORACLE安装及体系结构讲解-avi"><span class="nav-number">4.</span> <span class="nav-text">04.ORACLE安装及体系结构讲解.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#05-远程连接ORACLE-avi"><span class="nav-number">5.</span> <span class="nav-text">05.远程连接ORACLE.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-可视化工具安装与配置-avi"><span class="nav-number">6.</span> <span class="nav-text">06.可视化工具安装与配置.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-需求分析与表结构-avi"><span class="nav-number">7.</span> <span class="nav-text">07.需求分析与表结构.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#08-创建表空间-avi"><span class="nav-number">8.</span> <span class="nav-text">08.创建表空间.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#09-创建用户与用户赋权-avi"><span class="nav-number">9.</span> <span class="nav-text">09.创建用户与用户赋权.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-表的创建修改与删除-avi"><span class="nav-number">10.</span> <span class="nav-text">10.表的创建修改与删除.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-数据增删改-avi"><span class="nav-number">11.</span> <span class="nav-text">11.数据增删改.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-JDBC连接Oracle-搭建开发环境和编写工具类-avi"><span class="nav-number">12.</span> <span class="nav-text">12.JDBC连接Oracle-搭建开发环境和编写工具类.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-JDBC连接Oracle-数据的增删改操作-avi"><span class="nav-number">13.</span> <span class="nav-text">13.JDBC连接Oracle-数据的增删改操作.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-整库导出和导入-avi"><span class="nav-number">14.</span> <span class="nav-text">14.整库导出和导入.avi</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-按用户和表导入导出-avi"><span class="nav-number">15.</span> <span class="nav-text">15.按用户和表导入导出.avi</span></a></li></ol>
+    
+    </div>
+  </aside>
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="https://github.com/jasondeepny" target="_blank">jasondeepny</a></p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2018 Jasondeepny Blog All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Jasondeepny Blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2018 Jason All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
