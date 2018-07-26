@@ -260,6 +260,56 @@
         
           <section id="main" style="float:none;">
   
+    <article id="post-ContextLoaderListener 底层代码分析"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/07/27/ContextLoaderListener 底层代码分析/">ContextLoaderListener 底层代码分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/07/27/ContextLoaderListener 底层代码分析/" class="article-date">
+	  <time datetime="2018-07-26T16:51:32.000Z" itemprop="datePublished">2018-07-27</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/底层/">底层</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          &nbsp;&nbsp;&nbsp;在使用SSH框架时 ,有一个非常重要的步骤就是在web.xml配置文件中必须要配置一个监听器ContextLoaderListener,这个监听器的意义不仅仅是来监听ServletContext,更重要的作用是来初始化WebApplicationContext,接下来来分析下底层代码:
+
+&nbsp;&nbsp;&nbsp;进入到ContextLoaderListener这个类中,就会看到本类的有参和无参构造,以及成员方法,其中有一个方法叫做contex...
+        </p>
+        <p class="article-more-link">
+          <a href="/2018/07/27/ContextLoaderListener 底层代码分析/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
     <article id="post-聊聊Nginx"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -314,54 +364,6 @@
 <!-- Table of Contents -->
 
   
-    <article id="post-HashMap底层实现原理HashMap与HashTable区别HashMap与HashSet区别"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/07/21/HashMap底层实现原理HashMap与HashTable区别HashMap与HashSet区别/">HashMap底层实现原理/HashMap与HashTable区别/HashMap与HashSet区别</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/07/21/HashMap底层实现原理HashMap与HashTable区别HashMap与HashSet区别/" class="article-date">
-	  <time datetime="2018-07-21T14:09:04.000Z" itemprop="datePublished">2018-07-21</time>
-	</a>
-
-      
-    <a class="article-category-link" href="/categories/底层/">底层</a>
-
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          HashMap的工作原理&nbsp;&nbsp;&nbsp;HashMap基于hashing原理，我们通过put()和get()方法储存和获取对象。当我们将键值对传递给put()方法时，它调用键对象的hashCode()方法来计算hashcode，让后找到bucket位置来储存值对象。当获取对象时，通过键对象的equals()方法找到正确的键值对，然后返回值对象。HashMap使用链表来解决碰撞问题，当发生碰撞了，对象将会储存在链表的下一个节点中。 HashMap在每个链表节点中储存键值对...
-        </p>
-        <p class="article-more-link">
-          <a href="/2018/07/21/HashMap底层实现原理HashMap与HashTable区别HashMap与HashSet区别/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
     <article id="post-spring 使用中遇到的错误小集"  class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
@@ -397,6 +399,54 @@ Error creating bean with name 'userservice' defined in class path resource
         </p>
         <p class="article-more-link">
           <a href="/2018/07/21/spring 使用中遇到的错误小集/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+  
+    <article id="post-HashMap底层实现原理HashMap与HashTable区别HashMap与HashSet区别"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="/2018/07/21/HashMap底层实现原理HashMap与HashTable区别HashMap与HashSet区别/">HashMap底层实现原理/HashMap与HashTable区别/HashMap与HashSet区别</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2018/07/21/HashMap底层实现原理HashMap与HashTable区别HashMap与HashSet区别/" class="article-date">
+	  <time datetime="2018-07-21T14:09:04.000Z" itemprop="datePublished">2018-07-21</time>
+	</a>
+
+      
+    <a class="article-category-link" href="/categories/底层/">底层</a>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          HashMap的工作原理&nbsp;&nbsp;&nbsp;HashMap基于hashing原理，我们通过put()和get()方法储存和获取对象。当我们将键值对传递给put()方法时，它调用键对象的hashCode()方法来计算hashcode，让后找到bucket位置来储存值对象。当获取对象时，通过键对象的equals()方法找到正确的键值对，然后返回值对象。HashMap使用链表来解决碰撞问题，当发生碰撞了，对象将会储存在链表的下一个节点中。 HashMap在每个链表节点中储存键值对...
+        </p>
+        <p class="article-more-link">
+          <a href="/2018/07/21/HashMap底层实现原理HashMap与HashTable区别HashMap与HashSet区别/#more">阅读全文</a>
         </p>
       
     </div>
@@ -728,62 +778,12 @@ ActionContext&ensp;&ensp;&ensp;我们知道，ActionContext是Action执行时的
 <!-- Table of Contents -->
 
   
-    <article id="post-hello-world"  class="article article-type-post" itemscope itemprop="blogPost" >
-  <div id="articleInner" class="article-inner">
+
+
+  <nav id="page-nav">
     
-    
-      <header class="article-header">
-        
-  
-    <h1 class="thumb" itemprop="name">
-      <a class="article-title" href="/2018/03/24/hello-world/">Because I could not stop for Death</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-meta">
-      
-	<a href="/2018/03/24/hello-world/" class="article-date">
-	  <time datetime="2018-03-24T15:30:00.000Z" itemprop="datePublished">2018-03-24</time>
-	</a>
-
-      
-      
-    </div>
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p class="article-excerpt-content">
-          
-
-去造一个草原
-    需要一株三叶草和一只蜜蜂，
-        一株三叶草和一只蜜蜂，
-            还有梦。
-                如果蜜蜂不多，
-                    单靠梦也行。
-
-123456789101112131415161718192021222324252627282930313233Because I could not stop for Death                                Emily Di...
-        </p>
-        <p class="article-more-link">
-          <a href="/2018/03/24/hello-world/#more">阅读全文</a>
-        </p>
-      
-    </div>
-    <footer class="article-footer">
-      
-      
-      
-
-    </footer>
-  </div>
-  
-</article>
-
-<!-- Table of Contents -->
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+  </nav>
 
 </section>
         
