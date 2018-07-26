@@ -11,13 +11,13 @@
   
   
   
-  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;在使用SSH框架时 ,有一个非常重要的步骤就是在web.xml配置文件中必须要配置一个监听器ContextLoaderListener,这个监听器的意义不仅仅是来监听ServletContext,更重要的作用是来初始化WebApplicationContext,接下来来分析下底层代码:  &amp;nbsp;&amp;nbsp;&amp;nbsp;进入到ContextLoaderLis">
+  <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在使用SSH框架时 ,有一个非常重要的步骤就是在web.xml配置文件中必须要配置一个监听器ContextLoaderListener,这个监听器的意义不仅仅是来监听ServletContext,更重要的作用是来初始化WebApplicationContext,接下来来分析下底层代码:  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;">
 <meta name="keywords" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ContextLoaderListener 底层代码分析">
 <meta property="og:url" content="http://yoursite.com/2018/07/27/ContextLoaderListener 底层代码分析/index.html">
 <meta property="og:site_name" content="Jasondeepny Blog">
-<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;在使用SSH框架时 ,有一个非常重要的步骤就是在web.xml配置文件中必须要配置一个监听器ContextLoaderListener,这个监听器的意义不仅仅是来监听ServletContext,更重要的作用是来初始化WebApplicationContext,接下来来分析下底层代码:  &amp;nbsp;&amp;nbsp;&amp;nbsp;进入到ContextLoaderLis">
+<meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在使用SSH框架时 ,有一个非常重要的步骤就是在web.xml配置文件中必须要配置一个监听器ContextLoaderListener,这个监听器的意义不仅仅是来监听ServletContext,更重要的作用是来初始化WebApplicationContext,接下来来分析下底层代码:  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://i.loli.net/2018/07/27/5b59f8e03e6b0.png">
 <meta property="og:image" content="https://i.loli.net/2018/07/27/5b59f90e75acb.png">
@@ -25,10 +25,10 @@
 <meta property="og:image" content="https://i.loli.net/2018/07/27/5b59f9d0d0007.png">
 <meta property="og:image" content="https://i.loli.net/2018/07/27/5b59fa56b8d9d.png">
 <meta property="og:image" content="https://i.loli.net/2018/07/27/5b59f99f2a459.png">
-<meta property="og:updated_time" content="2018-07-26T16:57:36.456Z">
+<meta property="og:updated_time" content="2018-07-26T17:03:29.179Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ContextLoaderListener 底层代码分析">
-<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;在使用SSH框架时 ,有一个非常重要的步骤就是在web.xml配置文件中必须要配置一个监听器ContextLoaderListener,这个监听器的意义不仅仅是来监听ServletContext,更重要的作用是来初始化WebApplicationContext,接下来来分析下底层代码:  &amp;nbsp;&amp;nbsp;&amp;nbsp;进入到ContextLoaderLis">
+<meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;在使用SSH框架时 ,有一个非常重要的步骤就是在web.xml配置文件中必须要配置一个监听器ContextLoaderListener,这个监听器的意义不仅仅是来监听ServletContext,更重要的作用是来初始化WebApplicationContext,接下来来分析下底层代码:  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;">
 <meta name="twitter:image" content="https://i.loli.net/2018/07/27/5b59f8e03e6b0.png">
   
     <link rel="alternate" href="/atom.xml" title="Jasondeepny Blog" type="application/atom+xml">
@@ -202,22 +202,22 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>&nbsp;&nbsp;&nbsp;在使用SSH框架时 ,有一个非常重要的步骤就是在web.xml配置文件中必须要配置一个监听器<code>ContextLoaderListener</code>,这个监听器的意义不仅仅是来监听<code>ServletContext</code>,更重要的作用是来初始化<code>WebApplicationContext</code>,接下来来分析下底层代码:</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在使用SSH框架时 ,有一个非常重要的步骤就是在web.xml配置文件中必须要配置一个监听器<code>ContextLoaderListener</code>,这个监听器的意义不仅仅是来监听<code>ServletContext</code>,更重要的作用是来初始化<code>WebApplicationContext</code>,接下来来分析下底层代码:</p>
 <p><img src="https://i.loli.net/2018/07/27/5b59f8e03e6b0.png" alt="图1"></p>
-<p>&nbsp;&nbsp;&nbsp;进入到<code>ContextLoaderListener</code>这个类中,就会看到本类的有参和无参构造,以及成员方法,其中有一个方法叫做<code>contextInitialized</code>,在本方法中执行了<code>initWebApplicationContext</code>的方法如图所示:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;进入到<code>ContextLoaderListener</code>这个类中,就会看到本类的有参和无参构造,以及成员方法,其中有一个方法叫做<code>contextInitialized</code>,在本方法中执行了<code>initWebApplicationContext</code>的方法如图所示:</p>
 <p><img src="https://i.loli.net/2018/07/27/5b59f90e75acb.png" alt="图2"></p>
-<p>&nbsp;&nbsp;&nbsp;接着点进去会看到这个类 <code>class ContextLoaderListener extends ContextLoader implements ServletContextListener</code> 往下看会发现注释中有这么一句话:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;接着点进去会看到这个类 <code>class ContextLoaderListener extends ContextLoader implements ServletContextListener</code> 往下看会发现注释中有这么一句话:</p>
 <blockquote>
 <p>Create a new {@code ContextLoaderListener} that will create a web application</p>
 </blockquote>
-<p>&nbsp;&nbsp;&nbsp;说明<code>ContextLoaderListener</code>这个类会创建一个<code>WebApplicationContext</code>的实例,那它到底是怎样实现的呢?往下看我们会看到一个非常重要的方法<code>initWebApplicationContext</code>并且返回值为<code>WebApplicationContext</code>,可以断定是在这个方法中完成实例化的.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说明<code>ContextLoaderListener</code>这个类会创建一个<code>WebApplicationContext</code>的实例,那它到底是怎样实现的呢?往下看我们会看到一个非常重要的方法<code>initWebApplicationContext</code>并且返回值为<code>WebApplicationContext</code>,可以断定是在这个方法中完成实例化的.</p>
 <p><img src="https://i.loli.net/2018/07/27/5b59f9409dbf6.png" alt="图3"></p>
-<p>&nbsp;&nbsp;&nbsp;该方法中传了一个<code>ServletContext</code> 的参数,在方法中<code>ServletContext</code>有调用了<code>getAttribute</code> 的方法,传入的参数<code>WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE</code>不知道该参数是什么,由此点进去可以看到如下图所示:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该方法中传了一个<code>ServletContext</code> 的参数,在方法中<code>ServletContext</code>有调用了<code>getAttribute</code> 的方法,传入的参数<code>WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE</code>不知道该参数是什么,由此点进去可以看到如下图所示:</p>
 <p><img src="https://i.loli.net/2018/07/27/5b59f9d0d0007.png" alt="图4"></p>
-<p><code>String ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE = WebApplicationContext.class.getName() + &quot;.ROOT&quot;;</code>这是<code>WebApplicationContext</code>整个类中定义的一个常量,为该类的字节码对象,有<code>get</code>方法肯定就有<code>set</code>方法为其赋值,回到<code>ContextLoaderListener</code>这个类中继续往下看,会发现<code>servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);</code></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>String ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE = WebApplicationContext.class.getName() + &quot;.ROOT&quot;;</code>这是<code>WebApplicationContext</code>整个类中定义的一个常量,为该类的字节码对象,有<code>get</code>方法肯定就有<code>set</code>方法为其赋值,回到<code>ContextLoaderListener</code>这个类中继续往下看,会发现<code>servletContext.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, this.context);</code></p>
 <p><img src="https://i.loli.net/2018/07/27/5b59fa56b8d9d.png" alt="图5"></p>
 <p><img src="https://i.loli.net/2018/07/27/5b59f99f2a459.png" alt="图6"></p>
-<p>&nbsp;&nbsp;&nbsp;这个就说明当服务器启动时,ServletContext会随着服务器的启动完成初始化,，同时配置文件进行加载,监听器会调用该方法将WebApplicationContext(ApplicationContext对象的一个实现类)对象存入到<code>ServletContext</code>中来完成了其实例化.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个就说明当服务器启动时,ServletContext会随着服务器的启动完成初始化,，同时配置文件进行加载,监听器会调用该方法将WebApplicationContext(ApplicationContext对象的一个实现类)对象存入到<code>ServletContext</code>中来完成了其实例化.</p>
 
       
     </div>
